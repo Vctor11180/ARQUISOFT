@@ -1,110 +1,173 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
 import { Collapsible } from '@/components/Collapsible';
 import { ExternalLink } from '@/components/ExternalLink';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { IconSymbol } from '@/components/ui/IconSymbol';
+import { StyleSheet } from 'react-native';
+import { FeatureCard } from '@/components/FeatureCard';
+
+const GREEN = '#218838';
+const GREEN_DARK = '#145a32';
 
 export default function TabTwoScreen() {
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
+      headerBackgroundColor={{ light: '#f2fbf5', dark: '#0f1f13' }}
       headerImage={
         <IconSymbol
-          size={310}
-          color="#808080"
+          size={260}
+          color="#ffffff22"
           name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
+          style={styles.headerIcon}
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Explore</ThemedText>
+      }
+    >
+      <ThemedView style={styles.headerBlock}>
+        <ThemedText type="title" style={styles.title}>Sobre la App</ThemedText>
+        <ThemedText style={styles.subtitle}>Camballey: movilidad organizada y transparente.</ThemedText>
       </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
+
+      <ThemedView style={styles.gridBlock}>
+        <FeatureCard title="Rutas" description="Visualiza recorridos y paradas cercanas." icon="paperplane.fill" />
+        <FeatureCard title="Flota" description="Estado y disponibilidad de unidades." icon="house.fill" />
+        <FeatureCard title="Mantenimiento" description="Alertas de servicio preventivo." icon="chevron.right" />
+        <FeatureCard title="Reportes" description="Incidencias y feedback ciudadanos." icon="chevron.left.forwardslash.chevron.right" />
+      </ThemedView>
+
+      <Collapsible title="Roadmap visual 2025">
+        <ThemedView style={styles.timeline}>
+          <ThemedView style={styles.timeItem}>
+            <ThemedText style={styles.timeBadge}>Q1</ThemedText>
+            <ThemedText style={styles.timeText}>MVP roles + base de datos</ThemedText>
+          </ThemedView>
+          <ThemedView style={styles.timeItem}>
+            <ThemedText style={styles.timeBadge}>Q2</ThemedText>
+            <ThemedText style={styles.timeText}>Tracking en tiempo real y métricas</ThemedText>
+          </ThemedView>
+            <ThemedView style={styles.timeItem}>
+            <ThemedText style={styles.timeBadge}>Q3</ThemedText>
+            <ThemedText style={styles.timeText}>Optimización flota + IA básica</ThemedText>
+          </ThemedView>
+          <ThemedView style={styles.timeItem}>
+            <ThemedText style={styles.timeBadge}>Q4</ThemedText>
+            <ThemedText style={styles.timeText}>Expansión multi-ciudad</ThemedText>
+          </ThemedView>
+        </ThemedView>
+      </Collapsible>
+
+      <Collapsible title="Misión">
         <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
+          Facilitar la interacción entre pasajeros, choferes y administradores del transporte urbano
+          en Santa Cruz, digitalizando procesos y mejorando la seguridad y eficiencia.
         </ThemedText>
+      </Collapsible>
+
+      <Collapsible title="Perfiles y valor">
         <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
+          Pasajero: rastreo básico de rutas, notificaciones y feedback.{"\n"}
+          Chofer: registro de recorridos y estado del vehículo.{"\n"}
+          Dueño de micro: control de unidades, mantenimiento y rendimiento.{"\n"}
+          Sindicato: analítica agregada y monitoreo de operación.
         </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
+      </Collapsible>
+
+      <Collapsible title="Funciones clave (MVP)">
+        <ThemedText>
+          1. Selección de rol y personalización básica.{"\n"}
+          2. Registro / autenticación (próximo).{"\n"}
+          3. Panel de estado para chofer / unidad (próximo).{"\n"}
+          4. Métricas operativas para sindicato (planeado).{"\n"}
+          5. Notificaciones de eventos (planeado).
+        </ThemedText>
+      </Collapsible>
+
+      <Collapsible title="Tecnología">
+        <ThemedText>
+          Construido con Expo + React Native, componentes theming propios y potencial integración
+          futura con mapas y servicios en tiempo real.
+        </ThemedText>
+        <ExternalLink href="https://expo.dev">
+          <ThemedText type="link">Expo</ThemedText>
         </ExternalLink>
       </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
+
+      <Collapsible title="Próximas mejoras">
         <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
+          • Persistencia local del rol seleccionado.{"\n"}
+          • Flujos de autenticación y permisos.{"\n"}
+          • Integración GPS y tiempo estimado de llegada.{"\n"}
+          • Panel de incidencias y reportes rápidos.{"\n"}
+          • Optimización de consumo de batería.
         </ThemedText>
       </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image source={require('@/assets/images/react-logo.png')} style={{ alignSelf: 'center' }} />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Custom fonts">
-        <ThemedText>
-          Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText> to see how to load{' '}
-          <ThemedText style={{ fontFamily: 'SpaceMono' }}>
-            custom fonts such as this one.
-          </ThemedText>
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user&apos;s current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful <ThemedText type="defaultSemiBold">react-native-reanimated</ThemedText>{' '}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
+
+      <ThemedView style={styles.footer}>
+        <ThemedText style={styles.footerText}>Versión 0.1.0 • Hackatón</ThemedText>
+      </ThemedView>
     </ParallaxScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
+  headerIcon: {
     position: 'absolute',
+    bottom: -60,
+    left: -40,
   },
-  titleContainer: {
+  headerBlock: {
+    marginBottom: 20,
+    gap: 6,
+  },
+  title: {
+    color: GREEN_DARK,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: '#4a6b55',
+    lineHeight: 18,
+  },
+  footer: {
+    marginTop: 28,
+    paddingVertical: 16,
+    alignItems: 'center',
+    borderTopWidth: 1,
+    borderColor: '#e1ece5',
+  },
+  footerText: {
+    fontSize: 12,
+    color: '#5b6f63',
+  },
+  gridBlock: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    gap: 12,
+    marginBottom: 24,
+  },
+  timeline: {
+    position: 'relative',
+    paddingLeft: 12,
+    marginTop: 8,
+    gap: 12,
+  },
+  timeItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 8,
+  },
+  timeBadge: {
+    backgroundColor: '#218838',
+    color: '#fff',
+    fontSize: 11,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 8,
+    overflow: 'hidden',
+    fontWeight: '600',
+  },
+  timeText: {
+    fontSize: 13,
+    color: '#2f4a38',
   },
 });

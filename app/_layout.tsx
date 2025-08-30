@@ -1,9 +1,8 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { Stack } from 'expo-router'; // 👈 PASO 1: Importa Stack desde expo-router
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
-
 import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function RootLayout() {
@@ -13,17 +12,24 @@ export default function RootLayout() {
   });
 
   if (!loaded) {
-    // Async font loading only occurs in development.
     return null;
   }
 
+  // 👇 PASO 2: Ya no necesitas <NavigationContainer> ni createStackNavigator
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
+      {/* PASO 3: Usa el componente <Stack> directamente.
+        Este componente detectará automáticamente las pantallas 
+        que tienes en tu directorio /app.
+      */}
+      <Stack screenOptions={{ headerShown: false }}>
+        {/* No necesitas definir <Stack.Screen> aquí. 
+          Expo Router lo hace por ti basándose en tus archivos.
+          Tu pantalla "(tabs)" será manejada por su propio layout
+          en app/(tabs)/_layout.tsx
+        */}
       </Stack>
-      <StatusBar style="auto" />
+      <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
     </ThemeProvider>
   );
 }
