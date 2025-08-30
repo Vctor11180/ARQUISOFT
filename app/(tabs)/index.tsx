@@ -1,10 +1,10 @@
-import React from 'react';
-import { SafeAreaView, StyleSheet, View, Pressable, Animated } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { Image } from 'expo-image';
 import { ThemedText } from '@/components/ThemedText';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
+import React from 'react';
+import { Animated, Pressable, SafeAreaView, StyleSheet, View } from 'react-native';
 const BRAND_PRIMARY = '#42af56';
 const BRAND_DARK = '#064420';
 const BRAND_YELLOW = '#ffd23f';
@@ -26,7 +26,7 @@ export default function TucanScreen() {
   };
 
   return (
-  <LinearGradient colors={[BRAND_DARK, BRAND_PRIMARY]} style={styles.gradient}>
+    <LinearGradient colors={[BRAND_DARK, BRAND_PRIMARY]} style={styles.gradient}>
       <SafeAreaView style={styles.safe}>
         <View style={styles.decorLayer} pointerEvents="none">
           <Image source={{ uri: leavesLeft }} style={styles.imgLeft} />
@@ -55,11 +55,17 @@ export default function TucanScreen() {
             </Pressable>
           </Animated.View>
 
-          {/* Opciones rápidas Tarjetas / Manillas / NFC */}
+          {/* Opciones rápidas */}
           <View style={styles.optionsRow}>
-            <OptionPill label="Tarjetas" />
-            <OptionPill label="Manillas" />
-            <OptionPill label="Pago NFC" />
+            <Pressable style={styles.optionPill} onPress={() => router.push('/(tabs)/mapa')}>
+              <ThemedText style={styles.optionPillTxt}>🗺️ Mapa</ThemedText>
+            </Pressable>
+            <Pressable style={styles.optionPill} onPress={() => router.push('/(tabs)/landing')}>
+              <ThemedText style={styles.optionPillTxt}>🚀 Roles</ThemedText>
+            </Pressable>
+            <Pressable style={styles.optionPill} onPress={() => router.push('/(tabs)/interfazPago')}>
+              <ThemedText style={styles.optionPillTxt}>💳 Pago NFC</ThemedText>
+            </Pressable>
           </View>
         </View>
 

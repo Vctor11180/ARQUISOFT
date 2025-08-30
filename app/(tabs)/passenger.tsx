@@ -1,23 +1,31 @@
 import { ThemedText } from '@/components/ThemedText';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useRouter } from 'expo-router';
 import React, { useRef } from 'react';
-import { Animated, Dimensions, Pressable, StyleSheet, View } from 'react-native';
+import { Animated, Dimensions, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
 // Paleta nueva minimal
 const BRAND_PRIMARY = '#42af56';
 const BRAND_DARK = '#064420';
 const BORDER = '#e2e8f0';
-const CARD_COUNT = 2; // ficticio
-const WEARABLE_COUNT = 2; // ficticio
-const CARD_TOTAL = 5; // capacidad ficticia
-const WEARABLE_TOTAL = 5; // capacidad ficticia
+interface PaymentCard { id:string; alias:string; codigo:string; saldo:number; activa:boolean; tipo:'VIRTUAL'|'FISICA'; colorA:string; colorB:string; viajesMes:number; ultimoAbordaje?:string; rutaUltima?:string }
+interface Wearable { id:string; alias:string; activa:boolean; bateria:number; ultima?:string; viajesMes:number; ultimoAbordaje?:string; rutaUltima?:string }
 
 export default function PassengerPanel() {
 	const userName = 'Ronald Augusto';
+	const router = useRouter();
 	const [showNFC, setShowNFC] = React.useState(false);
 	const [hideBalance, setHideBalance] = React.useState(false);
-	const balance = 35.25; // mock
+	const [cards, setCards] = React.useState<PaymentCard[]>([
+		{ id:'c1', alias:'Tarjeta Principal', codigo:'T-4286', saldo:25.40, activa:true,  tipo:'FISICA',  colorA:'#42af56', colorB:'#2e8741', viajesMes:32, ultimoAbordaje:'Hoy 09:12', rutaUltima:'Línea 12' },
+		{ id:'c2', alias:'Uni', codigo:'T-9931', saldo:9.85,  activa:true,  tipo:'VIRTUAL', colorA:'#0d5f2b', colorB:'#064420', viajesMes:14, ultimoAbordaje:'Ayer 18:22', rutaUltima:'Línea 5' }
+	]);
+	const [wearables, setWearables] = React.useState<Wearable[]>([
+		{ id:'w1', alias:'Manilla Transporte', activa:true, bateria:84, ultima:'Hoy 07:55', viajesMes:18, ultimoAbordaje:'Hoy 08:01', rutaUltima:'Línea 12' },
+		{ id:'w2', alias:'Manilla Transporte',   activa:false, bateria:61, viajesMes:4, rutaUltima:'Línea 5' }
+	]);
+	const balance = cards.reduce((acc,c)=>acc+c.saldo,0); // suma de tarjetas
 	const pulse = useRef(new Animated.Value(1)).current;
 
 	React.useEffect(()=>{
@@ -32,7 +40,7 @@ export default function PassengerPanel() {
 	},[]);
 
 	return (
-		<View style={styles.root}>
+		<ScrollView style={styles.root} contentContainerStyle={{ paddingBottom:60 }}>
 			<HeaderPattern />
 			<LinearGradient colors={[BRAND_DARK, BRAND_PRIMARY]} style={styles.headerGradient}>
 				<View style={styles.headerTop}>
@@ -54,8 +62,17 @@ export default function PassengerPanel() {
 				<View style={styles.quickRow}>
 					<QuickOption icon="creditcard" label="Tarjetas" />
 					<QuickOption icon="watchface" label="Manillas" />
-					<QuickOption icon="wave.3.right" label="Pago NFC" onPress={()=>setShowNFC(s=>!s)} active={showNFC} />
+					<QuickOption icon="wave.3.right" label="Pago NFC" onPress={()=>router.push('/interfazPago')} active={showNFC} />
 				</View>
+
+				{/* Botón acceso directo a pantalla completa de pago NFC */}
+				<Pressable onPress={()=>router.push('/interfazPago')} style={({pressed})=>[styles.payNfcBtn, pressed && { transform:[{scale:0.97}] }]}>
+					<View style={styles.payNfcIconShell}>
+						<IconSymbol name="wave.3.right" size={24} color={BRAND_PRIMARY} />
+					</View>
+					<ThemedText style={styles.payNfcText}>Pagar por NFC</ThemedText>
+					<IconSymbol name="chevron.right" size={20} color={'#064420'} />
+				</Pressable>
 
 				{showNFC && (
 					<View style={styles.nfcInline}>
@@ -71,12 +88,32 @@ export default function PassengerPanel() {
 				)}
 			</LinearGradient>
 
-			{/* Conteo ficticio de tarjetas y manillas */}
+			{/* Resumen y capacidad */}
 			<View style={styles.statsRow}>
-				<StatPill icon="creditcard" label="Tarjetas" count={CARD_COUNT} total={CARD_TOTAL} color={BRAND_PRIMARY} />
-				<StatPill icon="watchface" label="Manillas" count={WEARABLE_COUNT} total={WEARABLE_TOTAL} color={BRAND_PRIMARY} />
+				<StatPill icon="creditcard" label="Tarjetas" count={cards.length} total={5} color={BRAND_PRIMARY} />
+				<StatPill icon="watchface" label="Manillas" count={wearables.length} total={5} color={BRAND_PRIMARY} />
 			</View>
-		</View>
+
+			{/* Tarjetas */}
+			<SectionHeader title="Tarjetas de transporte" actionLabel="Agregar" onAction={()=>{
+				if(cards.length>=5) return; 
+				const id = 'c'+(cards.length+1);
+				setCards(prev=>[...prev, { id, alias:'Tarjeta '+id, codigo:'T-'+String(Math.floor(Math.random()*9000+1000)), saldo:0, activa:true, tipo:'VIRTUAL', colorA:'#42af56', colorB:'#21753a', viajesMes:0 }]);
+			}} disabled={cards.length>=5} />
+			<View style={styles.cardList}>
+				{cards.map(c=> <PaymentCardItem key={c.id} card={c} onToggle={()=>setCards(prev=>prev.map(p=>p.id===c.id?{...p,activa:!p.activa}:p))} />)}
+			</View>
+
+			{/* Manillas */}
+			<SectionHeader title="Manillas de transporte" actionLabel="Agregar" onAction={()=>{
+				if(wearables.length>=5) return;
+				const id='w'+(wearables.length+1);
+				setWearables(prev=>[...prev,{ id, alias:'Manilla '+id, activa:true, bateria:100, viajesMes:0 }]);
+			}} disabled={wearables.length>=5} />
+			<View style={styles.wearableList}>
+				{wearables.map(w=> <WearableItem key={w.id} item={w} onToggle={()=>setWearables(prev=>prev.map(p=>p.id===w.id?{...p,activa:!p.activa}:p))} />)}
+			</View>
+		</ScrollView>
 	);
 }
 
@@ -108,6 +145,71 @@ function QuickOption({ icon, label, onPress, active }: { icon: any; label: strin
 		<Pressable onPress={onPress} style={({ pressed }) => [styles.quickOption, active && styles.quickOptionActive, pressed && { transform:[{ scale:0.94 }] }]}>
 			<IconSymbol name={icon} size={22} color={active ? '#fff':'#ffffff'} />
 			<ThemedText style={styles.quickLabel}>{label}</ThemedText>
+		</Pressable>
+	);
+}
+
+function SectionHeader({ title, actionLabel, onAction, disabled }: { title:string; actionLabel?:string; onAction?:()=>void; disabled?:boolean }) {
+	return (
+		<View style={styles.sectionHeader}>
+			<ThemedText style={styles.sectionTitle}>{title}</ThemedText>
+			{actionLabel && (
+				<Pressable disabled={disabled} onPress={onAction} style={[styles.addBtn, disabled && { opacity:0.35 }]}> 
+					<IconSymbol name="plus" size={16} color={BRAND_DARK} />
+					<ThemedText style={styles.addBtnTxt}>{actionLabel}</ThemedText>
+				</Pressable>
+			)}
+		</View>
+	);
+}
+
+function PaymentCardItem({ card, onToggle }: { card:PaymentCard; onToggle:()=>void }) {
+	return (
+		<Pressable onLongPress={onToggle} style={({pressed})=>[styles.payCard, pressed && { transform:[{scale:0.97}] }]}>
+			<LinearGradient colors={[card.colorA, card.colorB]} style={styles.payCardGradient}>
+				<View style={styles.payCardTopRow}>
+					<View style={styles.transitIconCircle}>
+						<IconSymbol name="bus" size={18} color="#ffffff" />
+					</View>
+					<View style={[styles.statusBadge, card.activa? styles.badgeActiva : styles.badgeInactiva]}>
+						<ThemedText style={styles.badgeText}>{card.activa? 'Activa':'Bloqueada'}</ThemedText>
+					</View>
+				</View>
+				<ThemedText style={styles.payAlias}>{card.alias}</ThemedText>
+				<ThemedText style={styles.payNumber}>{card.codigo}</ThemedText>
+				<View style={styles.payFooterRow}>
+					<ThemedText style={styles.paySaldo}>Crédito Bs. {card.saldo.toFixed(2)}</ThemedText>
+					<ThemedText style={styles.payTipo}>{card.tipo === 'FISICA' ? 'Plástica':'Virtual / QR'}</ThemedText>
+				</View>
+				<View style={styles.payStatsRow}>
+					<ThemedText style={styles.payViajes}>{card.viajesMes} viajes este mes</ThemedText>
+					{card.ultimoAbordaje && <ThemedText style={styles.payUltUso}>{card.ultimoAbordaje}</ThemedText>}
+				</View>
+				{card.rutaUltima && <ThemedText style={styles.payRuta}>Última ruta: {card.rutaUltima}</ThemedText>}
+			</LinearGradient>
+		</Pressable>
+	);
+}
+
+function WearableItem({ item, onToggle }: { item:Wearable; onToggle:()=>void }) {
+	return (
+		<Pressable onLongPress={onToggle} style={({pressed})=>[styles.wearableCard, pressed && { transform:[{scale:0.97}] }]}>
+			<View style={styles.wearableTop}>
+				<IconSymbol name="watchface" size={22} color={BRAND_PRIMARY} />
+				<View style={[styles.statusDot, { backgroundColor: item.activa? '#16a34a':'#dc2626' }]} />
+			</View>
+			<ThemedText style={styles.wearAlias}>{item.alias}</ThemedText>
+			<View style={styles.wearRow}>
+				<ThemedText style={styles.wearBattery}>{item.bateria}% batería</ThemedText>
+				<ThemedText style={styles.wearEstado}>{item.activa? 'Activa':'Inactiva'}</ThemedText>
+			</View>
+			<View style={styles.wearRow}>
+				<ThemedText style={styles.wearViajes}>{item.viajesMes} viajes mes</ThemedText>
+				{item.ultimoAbordaje && <ThemedText style={styles.wearUltUso}>{item.ultimoAbordaje}</ThemedText>}
+			</View>
+			{item.rutaUltima && <ThemedText style={styles.wearRuta}>Ruta: {item.rutaUltima}</ThemedText>}
+			{item.ultima && <ThemedText style={styles.wearUltima}>Sincronizó: {item.ultima}</ThemedText>}
+			<ThemedText style={styles.wearHint}>Mantén presionado para {item.activa? 'bloquear':'activar'}</ThemedText>
 		</Pressable>
 	);
 }
@@ -161,4 +263,52 @@ const styles = StyleSheet.create({
 	segmentActive: { backgroundColor:BRAND_PRIMARY }
 });
 
+// Estilos añadidos para nuevas secciones
+const extra = StyleSheet.create({}); // placeholder (evita aviso de archivo vacío extra)
+
+Object.assign(styles, {
+	sectionHeader:{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', paddingHorizontal:20, marginTop:4, marginBottom:6 },
+	sectionTitle:{ fontSize:18, fontWeight:'700', color:BRAND_DARK, letterSpacing:-0.5 },
+	addBtn:{ flexDirection:'row', alignItems:'center', gap:4, backgroundColor:'#d7f2e2', paddingHorizontal:14, paddingVertical:8, borderRadius:22 },
+	addBtnTxt:{ fontSize:13, fontWeight:'600', color:BRAND_DARK },
+	cardList:{ paddingHorizontal:16, gap:14 },
+	payCard:{ borderRadius:22, overflow:'hidden', shadowColor:'#000', shadowOpacity:0.10, shadowRadius:10, elevation:4 },
+	payCardGradient:{ padding:18, gap:8 },
+	payCardTopRow:{ flexDirection:'row', justifyContent:'space-between', alignItems:'center' },
+		payChip:{ width:30, height:22, borderRadius:6, backgroundColor:'rgba(255,255,255,0.6)' }, // legacy (ya no se usa)
+		transitIconCircle:{ width:32, height:32, borderRadius:16, backgroundColor:'rgba(255,255,255,0.25)', alignItems:'center', justifyContent:'center' },
+	statusBadge:{ paddingHorizontal:10, paddingVertical:4, borderRadius:14 },
+	badgeActiva:{ backgroundColor:'rgba(255,255,255,0.28)' },
+	badgeInactiva:{ backgroundColor:'rgba(0,0,0,0.35)' },
+	badgeText:{ fontSize:11, fontWeight:'600', color:'#ffffff' },
+	payAlias:{ fontSize:16, fontWeight:'700', color:'#ffffff', letterSpacing:0.4 },
+		payNumber:{ fontSize:15, fontWeight:'600', color:'#ffffff', letterSpacing:1, marginTop:2 },
+		payFooterRow:{ flexDirection:'row', justifyContent:'space-between', alignItems:'flex-end', marginTop:2 },
+		paySaldo:{ fontSize:16, fontWeight:'700', color:'#ffffff' },
+		payTipo:{ fontSize:11, fontWeight:'600', color:'rgba(255,255,255,0.85)', letterSpacing:0.5 },
+		payStatsRow:{ flexDirection:'row', justifyContent:'space-between', marginTop:6 },
+		payViajes:{ fontSize:11, fontWeight:'600', color:'rgba(255,255,255,0.9)' },
+		payUltUso:{ fontSize:11, color:'rgba(255,255,255,0.85)' },
+		payRuta:{ fontSize:11, color:'rgba(255,255,255,0.85)', marginTop:4 },
+	wearableList:{ paddingHorizontal:16, paddingTop:4, gap:14, paddingBottom:30 },
+	wearableCard:{ backgroundColor:'#ffffff', borderRadius:22, padding:16, gap:6, borderWidth:1, borderColor:'#e2e8f0', shadowColor:'#000', shadowOpacity:0.05, shadowRadius:6, elevation:3 },
+	wearableTop:{ flexDirection:'row', justifyContent:'space-between', alignItems:'center' },
+	statusDot:{ width:12, height:12, borderRadius:6 },
+	wearAlias:{ fontSize:15, fontWeight:'700', color:BRAND_DARK },
+	wearRow:{ flexDirection:'row', justifyContent:'space-between', alignItems:'center' },
+	wearBattery:{ fontSize:12, fontWeight:'600', color:'#475569' },
+	wearEstado:{ fontSize:12, fontWeight:'700', color:BRAND_PRIMARY },
+	wearUltima:{ fontSize:11, color:'#64748b', marginTop:2 },
+	wearViajes:{ fontSize:11, fontWeight:'600', color:'#475569' },
+	wearUltUso:{ fontSize:11, color:'#475569' },
+	wearRuta:{ fontSize:11, color:'#475569', marginTop:2 },
+	wearHint:{ fontSize:10, color:'#94a3b8', marginTop:4 }
+});
+
+Object.assign(styles, {
+	payNfcBtn:{ marginTop:8, flexDirection:'row', alignItems:'center', gap:14, backgroundColor:'rgba(255,255,255,0.9)', borderRadius:26, paddingVertical:12, paddingHorizontal:18, shadowColor:'#000', shadowOpacity:0.12, shadowRadius:8, elevation:4, borderWidth:1, borderColor:'rgba(255,255,255,0.4)' },
+	payNfcIconShell:{ width:44, height:44, borderRadius:22, backgroundColor:'rgba(66,175,86,0.15)', alignItems:'center', justifyContent:'center', borderWidth:1, borderColor:'rgba(66,175,86,0.35)' },
+	payNfcText:{ fontSize:16, fontWeight:'700', color:BRAND_DARK, flex:1 }
+});
+ 
 
