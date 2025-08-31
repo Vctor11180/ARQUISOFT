@@ -4,9 +4,10 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Animated, Pressable, SafeAreaView, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Animated, Pressable, SafeAreaView, StyleSheet, View } from 'react-native';
+import Svg, { Path } from 'react-native-svg';
 
 const BRAND_PRIMARY = '#42af56';
 const BRAND_DARK = '#064420';
@@ -14,7 +15,91 @@ const BRAND_YELLOW = '#ffd23f';
 
 const leavesLeft = 'https://lh3.googleusercontent.com/aida-public/AB6AXuAi5Hudz9HqNn74JcNFDaC71znohBidf_67i_pP6toPURAwyNziXOUnk-7n18XtAMj4AP-JEEn2F44DmkAESXcEX0Jyb58iBj8mkb0wO9QyAFs5Gec68UTCgEGmK4CGHTL0m5YhLt1fj5sGTKVRp1UkZT1tx6HSuRoofn9HVknFwRkT36cBGcwchldUMBSlv-xNohVvDfFHG_syT7js-tLzr9dcU7dusZ_RaBfsZuAtHerSB-TfUCa46C6pyL4XotOiE-DttP3C';
 const leavesRight = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDsZkRA4RfxQCu75LonCZyfRSpv_SoxMwzuNc60zc5WwyWpiqHAB5CihIL6kNKQKPsIytnLOtWY64LfKWVTkSVAvmunEtlbujjHptn6BZ04Imk13VMv1r9ZyePQBdSUxMUyrIgb5H0myMzTMVcnDAaxW6lbhb6GtuUwcVI_72-UPw0goC7k6AklKW4vpYU0rFbvgDhWoOaEeOS7FEj6n2SH-RQeritEIyLJZROHBHS3oeUPu8GIz9Q1zhlW7oKHAbhshk9Ld2';
-const toucanImg = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDzbyTb59rqOn1Hf4zyOCSN558QRJXjdqKQ0I0P1RE9I9cO4ILh_Gm6KI4N68VSjMWglNWXbMvbBlmEK78MvftwbM71sVuIRIJG3oinTit3y2itd_LdyGxAGo_ZXZo2mkuGax8IzNQbzA-kvxOSvX74ivzTOmMJRa3mUMm5IixTCjvEOSgakHJ2cWV2CS0Fi7JIrfDQ4asJD750z3v7SnbuI5Jwi80gCLcVhuvc2kLgaat6Pe2zXIeZ3-BvRAFu0RmX_dBOmcr';
+
+// Componente de mini tucanes de fondo
+const BackgroundToucans = () => (
+  <View style={styles.backgroundToucans} pointerEvents="none">
+    {/* Mini tucán 1 - Esquina superior izquierda */}
+    <View style={[styles.miniToucan, { top: '15%', left: '8%', transform: [{ rotate: '-15deg' }] }]}>
+      <Svg width={40} height={40} viewBox="0 0 200 200">
+        <Path
+          d="M 40 120 Q 40 80 60 60 Q 80 40 120 40 Q 160 40 180 60 Q 200 80 200 120 Q 200 160 180 180 Q 160 200 120 200 Q 80 200 60 180 Q 40 160 40 120"
+          fill="rgba(255, 210, 63, 0.15)"
+          stroke="rgba(6, 68, 32, 0.2)"
+          strokeWidth="1"
+        />
+        <Path
+          d="M 120 60 Q 140 50 160 60 Q 170 70 170 80 Q 170 90 160 100 Q 150 110 140 100 Q 130 90 120 80 Q 120 70 120 60"
+          fill="rgba(255, 107, 53, 0.15)"
+        />
+      </Svg>
+    </View>
+
+    {/* Mini tucán 2 - Esquina superior derecha */}
+    <View style={[styles.miniToucan, { top: '12%', right: '5%', transform: [{ rotate: '20deg' }] }]}>
+      <Svg width={35} height={35} viewBox="0 0 200 200">
+        <Path
+          d="M 40 120 Q 40 80 60 60 Q 80 40 120 40 Q 160 40 180 60 Q 200 80 200 120 Q 200 160 180 180 Q 160 200 120 200 Q 80 200 60 180 Q 40 160 40 120"
+          fill="rgba(66, 175, 86, 0.12)"
+          stroke="rgba(6, 68, 32, 0.15)"
+          strokeWidth="1"
+        />
+        <Path
+          d="M 120 60 Q 140 50 160 60 Q 170 70 170 80 Q 170 90 160 100 Q 150 110 140 100 Q 130 90 120 80 Q 120 70 120 60"
+          fill="rgba(255, 107, 53, 0.12)"
+        />
+      </Svg>
+    </View>
+
+    {/* Mini tucán 3 - Centro izquierda */}
+    <View style={[styles.miniToucan, { top: '45%', left: '3%', transform: [{ rotate: '-25deg' }] }]}>
+      <Svg width={30} height={30} viewBox="0 0 200 200">
+        <Path
+          d="M 40 120 Q 40 80 60 60 Q 80 40 120 40 Q 160 40 180 60 Q 200 80 200 120 Q 200 160 180 180 Q 160 200 120 200 Q 80 200 60 180 Q 40 160 40 120"
+          fill="rgba(255, 210, 63, 0.1)"
+          stroke="rgba(6, 68, 32, 0.1)"
+          strokeWidth="1"
+        />
+      </Svg>
+    </View>
+
+    {/* Mini tucán 4 - Centro derecha */}
+    <View style={[styles.miniToucan, { top: '55%', right: '2%', transform: [{ rotate: '30deg' }] }]}>
+      <Svg width={32} height={32} viewBox="0 0 200 200">
+        <Path
+          d="M 40 120 Q 40 80 60 60 Q 80 40 120 40 Q 160 40 180 60 Q 200 80 200 120 Q 200 160 180 180 Q 160 200 120 200 Q 80 200 60 180 Q 40 160 40 120"
+          fill="rgba(66, 175, 86, 0.08)"
+          stroke="rgba(6, 68, 32, 0.08)"
+          strokeWidth="1"
+        />
+      </Svg>
+    </View>
+
+    {/* Mini tucán 5 - Abajo izquierda */}
+    <View style={[styles.miniToucan, { bottom: '20%', left: '10%', transform: [{ rotate: '-10deg' }] }]}>
+      <Svg width={28} height={28} viewBox="0 0 200 200">
+        <Path
+          d="M 40 120 Q 40 80 60 60 Q 80 40 120 40 Q 160 40 180 60 Q 200 80 200 120 Q 200 160 180 180 Q 160 200 120 200 Q 80 200 60 180 Q 40 160 40 120"
+          fill="rgba(255, 210, 63, 0.08)"
+          stroke="rgba(6, 68, 32, 0.06)"
+          strokeWidth="1"
+        />
+      </Svg>
+    </View>
+
+    {/* Mini tucán 6 - Abajo derecha */}
+    <View style={[styles.miniToucan, { bottom: '25%', right: '8%', transform: [{ rotate: '15deg' }] }]}>
+      <Svg width={25} height={25} viewBox="0 0 200 200">
+        <Path
+          d="M 40 120 Q 40 80 60 60 Q 80 40 120 40 Q 160 40 180 60 Q 200 80 200 120 Q 200 160 180 180 Q 160 200 120 200 Q 80 200 60 180 Q 40 160 40 120"
+          fill="rgba(66, 175, 86, 0.06)"
+          stroke="rgba(6, 68, 32, 0.05)"
+          strokeWidth="1"
+        />
+      </Svg>
+    </View>
+  </View>
+);
 
 export default function TucanScreen() {
   const scheme = useColorScheme();
@@ -22,6 +107,7 @@ export default function TucanScreen() {
   const [active, setActive] = React.useState<'inicio' | 'beneficios' | 'recargar'>('inicio');
   const [showLangMenu, setShowLangMenu] = React.useState(false);
   const [lang, setLang] = React.useState(i18n.language);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const scale = React.useRef(new Animated.Value(1)).current;
   const router = useRouter();
   const { userProfile, loading } = useAuth();
@@ -63,6 +149,9 @@ export default function TucanScreen() {
   return (
     <LinearGradient colors={[BRAND_DARK, BRAND_PRIMARY]} style={styles.gradient}>
       <SafeAreaView style={styles.safe}>
+        {/* Mini tucanes de fondo */}
+        <BackgroundToucans />
+
         <View style={styles.decorLayer} pointerEvents="none">
           <Image source={{ uri: leavesLeft }} style={styles.imgLeft} />
           <Image source={{ uri: leavesRight }} style={styles.imgRight} />
@@ -96,7 +185,18 @@ export default function TucanScreen() {
 
         <View style={styles.main}>
           <View style={styles.illustrationBox}>
-            <Image source={{ uri: toucanImg }} style={styles.toucan} contentFit="contain" />
+            {!imageLoaded && (
+              <View style={styles.loadingContainer}>
+                <ActivityIndicator size="large" color={BRAND_YELLOW} />
+              </View>
+            )}
+            <Image
+              source={require('../../assets/images/logo-tucan.jpg')}
+              style={[styles.logo, { opacity: imageLoaded ? 1 : 0 }]}
+              contentFit="contain"
+              onLoad={() => setImageLoaded(true)}
+              onError={() => setImageLoaded(true)} // Fallback si hay error
+            />
           </View>
           <ThemedText style={styles.heroHeading}>{t('index.heroTitle')}</ThemedText>
           <ThemedText style={styles.heroParagraph}>
@@ -160,8 +260,17 @@ const styles = StyleSheet.create({
   iconBtn: { height: 48, width: 48, borderRadius: 24, backgroundColor: 'rgba(255,255,255,0.2)', alignItems: 'center', justifyContent: 'center' },
   iconBtnText: { color: '#fff', fontWeight: '700' },
   main: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24 },
-  illustrationBox: { width: 220, height: 220, marginBottom: 24 },
-  toucan: { width: '100%', height: '100%' },
+  illustrationBox: { width: 220, height: 220, marginBottom: 24, alignItems: 'center', justifyContent: 'center' },
+  logo: { width: '100%', height: '100%', borderRadius: 20 },
+  loadingContainer: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    borderRadius: 20
+  },
   heroHeading: { color: '#fff', fontSize: 30, fontWeight: '700', textAlign: 'center', marginBottom: 12, letterSpacing: -0.5 },
   heroParagraph: { color: 'rgba(255,255,255,0.8)', fontSize: 16, lineHeight: 22, textAlign: 'center', marginBottom: 28, maxWidth: 320 },
   ctaBtn: { minWidth: 160, height: 56, paddingHorizontal: 32, borderRadius: 32, backgroundColor: BRAND_YELLOW, alignItems: 'center', justifyContent: 'center', shadowColor: '#000', shadowOpacity: 0.25, shadowRadius: 8, elevation: 5 },
@@ -181,4 +290,6 @@ const styles = StyleSheet.create({
   tabIconCircleActive: { backgroundColor: '#fff' },
   tabLabel: { fontSize: 12, fontWeight: '600', color: 'rgba(255,255,255,0.6)' },
   tabLabelActive: { color: '#fff' },
+  backgroundToucans: { position: 'absolute', inset: 0, zIndex: -1 },
+  miniToucan: { position: 'absolute' },
 });
