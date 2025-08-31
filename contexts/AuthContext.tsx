@@ -8,6 +8,8 @@ interface UserProfile {
   email: string;
   full_name: string;
   tipo?: number; // 1: pasajero, 2: chofer, 3: dueño, 4: dirigente
+  telefono?: string | null;
+  numero_cuenta?: string | null;
   created_at: string;
 }
 
@@ -116,7 +118,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // Intentar cargar desde la tabla Usuarios personalizada primero
       const { data: customProfile, error: customError } = await supabase
         .from('Usuarios')
-        .select('*')
+        .select('id,email,full_name,tipo,telefono,numero_cuenta,created_at')
         .eq('id', userId)
         .single();
 
@@ -125,7 +127,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           id: customProfile.id,
           email: customProfile.email,
           full_name: customProfile.full_name,
-          tipo: customProfile.tipo,
+            tipo: customProfile.tipo,
+            telefono: customProfile.telefono,
+            numero_cuenta: customProfile.numero_cuenta,
           created_at: customProfile.created_at,
         };
         setUserProfile(profile);
@@ -146,7 +150,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // Crear en tabla Usuarios
         const { error: insertError } = await supabase
           .from('Usuarios')
-          .insert([newProfile]);
+          .insert([{ ...newProfile }]);
 
         if (!insertError) {
           setUserProfile(newProfile);

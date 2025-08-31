@@ -2,8 +2,9 @@ import { ThemedText } from '@/components/ThemedText';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { useAuth } from '@/contexts/AuthContext';
 
 // Nueva paleta unificada
 const PRIMARY = '#42af56';
@@ -25,6 +26,15 @@ const roles: RoleDef[] = [
 export default function TucanLanding() {
   const [activeTab, setActiveTab] = React.useState<'home' | 'more'>('home');
   const router = useRouter();
+  const { userProfile, loading } = useAuth();
+
+  useEffect(() => {
+    if (!loading) {
+      if (userProfile && (!userProfile.telefono || !userProfile.numero_cuenta)) {
+        router.replace('/info-inicial');
+      }
+    }
+  }, [userProfile, loading]);
   return (
     <View style={styles.screen}>      
       <ScrollView contentContainerStyle={{ paddingBottom: 200 }}>      
