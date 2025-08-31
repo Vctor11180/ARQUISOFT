@@ -1,10 +1,10 @@
 import { ThemedText } from '@/components/ThemedText';
+import { useAuth } from '@/contexts/AuthContext';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import React, { useEffect } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
-import { useAuth } from '@/contexts/AuthContext';
 
 // Nueva paleta unificada
 const PRIMARY = '#42af56';
@@ -15,18 +15,18 @@ const SLATE600 = '#385442';
 
 const LOGO_URL = 'https://res.cloudinary.com/dsqmynhve/image/upload/v1756544811/IMAGOTIPO_z3lcp9.png';
 
-interface RoleDef { label: string; desc: string; key: string; iconBg: string; icon: string; funcion: any }
+interface RoleDef { label: string; desc: string; key: string; iconBg: string; icon: string; tipo:number; target:string }
 const roles: RoleDef[] = [
-  { key: 'pasajero', label: 'Pasajero', desc: 'Viaja y paga fácil', iconBg: '#e3f9ec', icon:'👤', funcion: (rote)=>(rote.push('/passenger')) },
-  { key: 'chofer', label: 'Chofer', desc: 'Registra tus viajes', iconBg: '#e3f9ec', icon:'🚌', funcion: (rote)=>{ rote.push('/chofer')} },
-  { key: 'dueno_micro', label: 'Dueño de micro', desc: 'Gestiona tu flota', iconBg: '#e3f9ec', icon:'🚐', funcion: (rote)=>{rote.push('/dueno')} },
-  { key: 'dueno_sindicato', label: 'Sindicato', desc: 'Estadísticas y control', iconBg: '#e3f9ec', icon:'📊', funcion: (rote)=>{rote.push('/sindicato')} },
+  { key: 'pasajero', label: 'Pasajero', desc: 'Viaja y paga fácil', iconBg: '#e3f9ec', icon:'👤', tipo:1, target:'/passenger' },
+  { key: 'chofer', label: 'Chofer', desc: 'Registra tus viajes', iconBg: '#e3f9ec', icon:'🚌', tipo:2, target:'/chofer' },
+  { key: 'dueno_micro', label: 'Dueño de micro', desc: 'Gestiona tu flota', iconBg: '#e3f9ec', icon:'🚐', tipo:3, target:'/dueno' },
+  { key: 'dueno_sindicato', label: 'Sindicato', desc: 'Estadísticas y control', iconBg: '#e3f9ec', icon:'📊', tipo:4, target:'/sindicato' },
 ];
 
 export default function TucanLanding() {
   const [activeTab, setActiveTab] = React.useState<'home' | 'more'>('home');
   const router = useRouter();
-  const { userProfile, loading } = useAuth();
+  const { userProfile, loading, updateUserType } = useAuth();
 
   useEffect(() => {
     if (!loading) {
@@ -52,7 +52,12 @@ export default function TucanLanding() {
             <Pressable
               key={r.key}
               style={({ pressed }) => [styles.roleCard, pressed && styles.roleCardPressed]}
-              onPress={() => r.funcion(router)}
+              onPress={async () => {
+                if (userProfile?.tipo !== r.tipo) {
+                  await updateUserType(r.tipo);
+                }
+                router.replace(r.target);
+              }}
             >
               <View style={[styles.iconCircle, { backgroundColor: r.iconBg }]}>
                 <ThemedText style={styles.iconEmoji}>{r.icon}</ThemedText>

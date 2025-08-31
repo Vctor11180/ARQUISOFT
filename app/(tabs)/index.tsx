@@ -74,7 +74,6 @@ export default function TucanScreen() {
             <TabIcon label="Inicio" active={active==='inicio'} onPress={()=>setActive('inicio')} />
             <TabIcon label="Comenzar" active={active==='beneficios'} onPress={()=>{setActive('beneficios');
               router.replace("/sesion");
-              console.log("XD")
              } } />
             <TabIcon label="Mas sobre tucan" active={active==='recargar'} onPress={()=>{setActive('recargar');
                             router.push("/infoTucan")                

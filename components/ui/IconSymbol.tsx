@@ -27,7 +27,8 @@ const MAPPING = {
   'eye': 'visibility',
   'eye.slash': 'visibility-off',
   'coloncurrencysign.circle': 'payments',
-  'checkmark.circle.fill': 'check-circle'
+  'checkmark.circle.fill': 'check-circle',
+  'trash': 'delete'
 } as IconMapping;
 
 /**

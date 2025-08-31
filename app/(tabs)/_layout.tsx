@@ -1,30 +1,43 @@
+import { AuthProvider, useAuth } from '@/contexts/AuthContext';
+import { CardProvider } from '@/contexts/CardContext';
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { AuthProvider } from '@/contexts/AuthContext';
 
-export default function TabLayout() {
+function RoleAwareTabs() {
+  const { userProfile } = useAuth();
+  const tipo = userProfile?.tipo; // 1: pasajero, 2: chofer, 3: dueño, 4: dirigente
   return (
-        <AuthProvider>
-
     <Tabs
       screenOptions={{
         headerShown: false,
         tabBarStyle: { display: 'none' },
       }}
     >
+      {/* Pantalla índice siempre */}
       <Tabs.Screen name="index" />
       <Tabs.Screen name="landing" />
-      <Tabs.Screen name="passenger" />
-      <Tabs.Screen name="chofer" />
-      <Tabs.Screen name="dueno" />
-      <Tabs.Screen name="sindicato" />
+      <Tabs.Screen name="sesion" />
+      <Tabs.Screen name="register" />
+      <Tabs.Screen name="info-inicial" />
       <Tabs.Screen name="infoTucan" />
       <Tabs.Screen name="interfazPago" />
       <Tabs.Screen name="mapa" />
       <Tabs.Screen name="explore" />
-      <Tabs.Screen name="sesion" />
-      <Tabs.Screen name="register" />
+      {/* Condicionales por rol */}
+      {tipo === 1 && <Tabs.Screen name="passenger" />}
+      {tipo === 2 && <Tabs.Screen name="chofer" />}
+      {tipo === 3 && <Tabs.Screen name="dueno" />}
+      {tipo === 4 && <Tabs.Screen name="sindicato" />}
     </Tabs>
-        </AuthProvider>
+  );
+}
+
+export default function TabLayout() {
+  return (
+    <AuthProvider>
+      <CardProvider>
+        <RoleAwareTabs />
+      </CardProvider>
+    </AuthProvider>
   );
 }
