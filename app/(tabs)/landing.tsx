@@ -27,7 +27,7 @@ export default function TucanLanding() {
   const router = useRouter();
   return (
     <View style={styles.screen}>      
-      <ScrollView contentContainerStyle={{ paddingBottom: 110 }}>      
+      <ScrollView contentContainerStyle={{ paddingBottom: 200 }}>      
         <View style={styles.headerWrapper}>
           <LinearGradient colors={['#064420', PRIMARY]} style={StyleSheet.absoluteFill} />
           <Image source={{ uri: LOGO_URL }} style={styles.logo} contentFit="contain" />
@@ -77,13 +77,13 @@ function NavItem({ label, active, onPress }: { label: string; active: boolean; o
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: '#fff' },
-  headerWrapper: { height: 270, backgroundColor: PRIMARY, overflow: 'hidden', borderBottomLeftRadius:28, borderBottomRightRadius:28 },
+  headerWrapper: { height: 270, backgroundColor: PRIMARY, overflow: 'hidden', borderBottomLeftRadius:28, borderBottomRightRadius:28, gap:20 },
   heroContent: { position: 'absolute', bottom: 34, left: 0, right: 0, paddingHorizontal: 32, maxWidth: '100%' },
   heroTitle: { color: '#fff', fontSize: 30, lineHeight: 34, fontWeight: '800', letterSpacing:0.6, marginBottom: 14 },
   heroSubtitle: { color:'#dff5e6', fontSize:13, fontWeight:'500', letterSpacing:0.5 },
   logo: { position: 'absolute', top: 25, alignSelf:'center', height: 180, width: 220, opacity: 0.18 },
   rolesContainer: { marginTop: -46, paddingHorizontal: 18, flexDirection: 'row', flexWrap: 'wrap', gap: 18, justifyContent: 'center' },
-  roleCard: { width: '44%', aspectRatio: 1, backgroundColor: BG_CARD, borderWidth: 1, borderColor: BORDER, borderRadius: 18, padding: 14, alignItems: 'center', justifyContent: 'center', gap: 12, shadowColor:'#000', shadowOpacity:0.04, shadowRadius:6, elevation:2, marginHorizontal:6, marginBottom:16 },
+  roleCard: { width: '44%', aspectRatio: 1, backgroundColor: BG_CARD, borderWidth: 1, borderColor: BORDER, borderRadius: 18, padding: 14, alignItems: 'center', justifyContent: 'center', gap: 12, shadowColor:'#000', shadowOpacity:0.04, shadowRadius:6, elevation:2, marginHorizontal:6, marginBottom:16, marginTop:80 },
   roleCardPressed: { opacity: 0.9, transform: [{ scale: 0.97 }], backgroundColor:'#eef7f0' },
   iconCircle: { width: 60, height: 60, borderRadius: 30, borderWidth:1, borderColor:'#b9dcc5' },
   iconEmoji: { fontSize: 30, textAlign:'center', lineHeight:60 },

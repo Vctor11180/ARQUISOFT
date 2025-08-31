@@ -1,8 +1,11 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
+import { AuthProvider } from '@/contexts/AuthContext';
 
 export default function TabLayout() {
   return (
+        <AuthProvider>
+
     <Tabs
       screenOptions={{
         headerShown: false,
@@ -19,6 +22,9 @@ export default function TabLayout() {
       <Tabs.Screen name="interfazPago" />
       <Tabs.Screen name="mapa" />
       <Tabs.Screen name="explore" />
+      <Tabs.Screen name="sesion" />
+      <Tabs.Screen name="register" />
     </Tabs>
+        </AuthProvider>
   );
 }

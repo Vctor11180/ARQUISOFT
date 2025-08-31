@@ -64,7 +64,7 @@ export default function TucanScreen() {
               <ThemedText style={styles.optionPillTxt}>🚀 Roles</ThemedText>
             </Pressable>
             <Pressable style={styles.optionPill} onPress={() => router.push('/(tabs)/interfazPago')}>
-              <ThemedText style={styles.optionPillTxt}>💳 Pago NFC</ThemedText>
+              <ThemedText style={styles.optionPillTxt}>💳 NFC</ThemedText>
             </Pressable>
           </View>
         </View>
@@ -73,7 +73,8 @@ export default function TucanScreen() {
           <View style={styles.tabsRow}>
             <TabIcon label="Inicio" active={active==='inicio'} onPress={()=>setActive('inicio')} />
             <TabIcon label="Comenzar" active={active==='beneficios'} onPress={()=>{setActive('beneficios');
-              router.push("/landing")
+              router.replace("/sesion");
+              console.log("XD")
              } } />
             <TabIcon label="Mas sobre tucan" active={active==='recargar'} onPress={()=>{setActive('recargar');
                             router.push("/infoTucan")                
