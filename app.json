@@ -1,50 +1,58 @@
 {
-    "expo": {
-        "name": "ArquiSoft",
-        "slug": "ArquiSoft",
-        "version": "1.0.0",
-        "orientation": "portrait",
-        "icon": "./assets/images/icon.png",
-        "scheme": "arquisoft",
-        "userInterfaceStyle": "automatic",
-        "newArchEnabled": false,
-        "ios": {
-            "supportsTablet": true,
-            "config": {
-                "googleMapsApiKey": "PON_AQUI_TU_IOS_GOOGLE_MAPS_API_KEY"
-            }
-        },
-        "android": {
-            "adaptiveIcon": {
-                "foregroundImage": "./assets/images/adaptive-icon.png",
-                "backgroundColor": "#ffffff"
-            },
-            "edgeToEdgeEnabled": true,
-            "config": {
-                "googleMaps": {
-                    "apiKey": "AIzaSyB0wI5s-PLACEHOLDER-REPLACE-ME"
-                }
-            },
-            "package": "com.pbheredia.ArquiSoft"
-        },
-        "web": {
-            "bundler": "metro",
-            "output": "static",
-            "favicon": "./assets/images/favicon.png"
-        },
-        "plugins": [
-            "expo-router", [
-                "expo-splash-screen",
-                {
-                    "image": "./assets/images/splash-icon.png",
-                    "imageWidth": 200,
-                    "resizeMode": "contain",
-                    "backgroundColor": "#ffffff"
-                }
-            ]
-        ],
-        "experiments": {
-            "typedRoutes": true
+  "expo": {
+    "name": "ArquiSoft",
+    "slug": "ArquiSoft",
+    "owner": "droidmashd",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "arquisoft",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": false,
+    "ios": {
+      "supportsTablet": true,
+      "config": {
+        "googleMapsApiKey": "PON_AQUI_TU_IOS_GOOGLE_MAPS_API_KEY"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyB0wI5s-PLACEHOLDER-REPLACE-ME"
         }
+      },
+      "package": "com.pbheredia.ArquiSoft"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "943a8664-3dc3-44da-a010-b2cf009cb441"
+      }
     }
+  }
 }
