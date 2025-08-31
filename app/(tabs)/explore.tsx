@@ -1,16 +1,18 @@
 import { Collapsible } from '@/components/Collapsible';
 import { ExternalLink } from '@/components/ExternalLink';
+import { FeatureCard } from '@/components/FeatureCard';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { IconSymbol } from '@/components/ui/IconSymbol';
+import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
-import { FeatureCard } from '@/components/FeatureCard';
 
 const GREEN = '#218838';
 const GREEN_DARK = '#145a32';
 
 export default function TabTwoScreen() {
+  const { t } = useTranslation();
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#f2fbf5', dark: '#0f1f13' }}
@@ -24,18 +26,18 @@ export default function TabTwoScreen() {
       }
     >
       <ThemedView style={styles.headerBlock}>
-        <ThemedText type="title" style={styles.title}>Sobre la App</ThemedText>
-        <ThemedText style={styles.subtitle}>Camballey: movilidad organizada y transparente.</ThemedText>
+        <ThemedText type="title" style={styles.title}>{t('explore.title')}</ThemedText>
+        <ThemedText style={styles.subtitle}>{t('explore.subtitle')}</ThemedText>
       </ThemedView>
 
       <ThemedView style={styles.gridBlock}>
-        <FeatureCard title="Rutas" description="Visualiza recorridos y paradas cercanas." icon="paperplane.fill" />
-        <FeatureCard title="Flota" description="Estado y disponibilidad de unidades." icon="house.fill" />
-        <FeatureCard title="Mantenimiento" description="Alertas de servicio preventivo." icon="chevron.right" />
-        <FeatureCard title="Reportes" description="Incidencias y feedback ciudadanos." icon="chevron.left.forwardslash.chevron.right" />
+        <FeatureCard title={t('explore.features.routes')} description="Visualiza recorridos y paradas cercanas." icon="paperplane.fill" />
+        <FeatureCard title={t('explore.features.fleet')} description="Estado y disponibilidad de unidades." icon="house.fill" />
+        <FeatureCard title={t('explore.features.maintenance')} description="Alertas de servicio preventivo." icon="chevron.right" />
+        <FeatureCard title={t('explore.features.reports')} description="Incidencias y feedback ciudadanos." icon="chevron.left.forwardslash.chevron.right" />
       </ThemedView>
 
-      <Collapsible title="Roadmap visual 2025">
+      <Collapsible title={t('explore.roadmap')}>
         <ThemedView style={styles.timeline}>
           <ThemedView style={styles.timeItem}>
             <ThemedText style={styles.timeBadge}>Q1</ThemedText>
@@ -45,7 +47,7 @@ export default function TabTwoScreen() {
             <ThemedText style={styles.timeBadge}>Q2</ThemedText>
             <ThemedText style={styles.timeText}>Tracking en tiempo real y métricas</ThemedText>
           </ThemedView>
-            <ThemedView style={styles.timeItem}>
+          <ThemedView style={styles.timeItem}>
             <ThemedText style={styles.timeBadge}>Q3</ThemedText>
             <ThemedText style={styles.timeText}>Optimización flota + IA básica</ThemedText>
           </ThemedView>
@@ -56,14 +58,14 @@ export default function TabTwoScreen() {
         </ThemedView>
       </Collapsible>
 
-      <Collapsible title="Misión">
+      <Collapsible title={t('explore.mission')}>
         <ThemedText>
           Facilitar la interacción entre pasajeros, choferes y administradores del transporte urbano
           en Santa Cruz, digitalizando procesos y mejorando la seguridad y eficiencia.
         </ThemedText>
       </Collapsible>
 
-      <Collapsible title="Perfiles y valor">
+      <Collapsible title={t('explore.profiles')}>
         <ThemedText>
           Pasajero: rastreo básico de rutas, notificaciones y feedback.{"\n"}
           Chofer: registro de recorridos y estado del vehículo.{"\n"}
@@ -72,7 +74,7 @@ export default function TabTwoScreen() {
         </ThemedText>
       </Collapsible>
 
-      <Collapsible title="Funciones clave (MVP)">
+      <Collapsible title={t('explore.keyFunctions')}>
         <ThemedText>
           1. Selección de rol y personalización básica.{"\n"}
           2. Registro / autenticación (próximo).{"\n"}
@@ -82,7 +84,7 @@ export default function TabTwoScreen() {
         </ThemedText>
       </Collapsible>
 
-      <Collapsible title="Tecnología">
+      <Collapsible title={t('explore.technology')}>
         <ThemedText>
           Construido con Expo + React Native, componentes theming propios y potencial integración
           futura con mapas y servicios en tiempo real.
@@ -92,7 +94,7 @@ export default function TabTwoScreen() {
         </ExternalLink>
       </Collapsible>
 
-      <Collapsible title="Próximas mejoras">
+      <Collapsible title={t('explore.nextImprovements')}>
         <ThemedText>
           • Persistencia local del rol seleccionado.{"\n"}
           • Flujos de autenticación y permisos.{"\n"}

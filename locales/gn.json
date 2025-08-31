@@ -1,0 +1,408 @@
+{
+  "common": {
+    "welcome": "Mba'éichapa",
+    "login": "Jeike",
+    "register": "Ñemboheraguapy",
+    "logout": "Ñesẽ",
+    "profile": "Mba'ekuaa",
+    "settings": "Ñemboheko",
+    "language": "Ñe'ẽ",
+    "save": "Ñongatu",
+    "cancel": "Mbotove",
+    "confirm": "Moneĩ",
+    "back": "Kuatiape",
+    "next": "Upeigua",
+    "loading": "Oñembo'e...",
+    "error": "Javy",
+    "success": "Iporã",
+    "show": "Hechauka",
+    "hide": "Ñomi"
+  },
+  "navigation": {
+    "home": "Óga",
+    "explore": "Heka",
+    "map": "Tenda rehegua",
+    "driver": "Mba'yruhára",
+    "passenger": "Ogueraha",
+    "owner": "Iporãva",
+    "union": "Ñemboheko"
+  },
+  "auth": {
+    "login": "Jeike",
+    "register": "Ñemboheraguapy",
+    "email": "Ñe'ẽveve",
+    "password": "Ñe'ẽñemi",
+    "confirmPassword": "Ñe'ẽñemi moneĩ",
+    "forgotPassword": "¿Reikuaa'ỹpa nde ñe'ẽñemi?",
+    "signInWithGoogle": "Google ndive jeike",
+    "dontHaveAccount": "¿Ndaipóripa nde mba'ekuaa?",
+    "alreadyHaveAccount": "¿Iporãpa nde mba'ekuaa?",
+    "createAccount": "Ñemboheraguapy mba'apo",
+    "loginTitle": "Jeike",
+    "registerTitle": "Ñemboheraguapy",
+    "loginSubtitle": "Iporã jeikejey",
+    "registerSubtitle": "Ñande atyguasupe jeike",
+    "emailPlaceholder": "Ñe'ẽveve nde jeike",
+    "passwordPlaceholder": "Ñe'ẽñemi nde jeike",
+    "confirmPasswordPlaceholder": "Ñe'ẽñemi nde moneĩ",
+    "loginButton": "Jeike",
+    "registerButton": "Ñemboheraguapy",
+    "switchToRegister": "¿Ndaipóripa nde mba'ekuaa? Ñemboheraguapy",
+    "switchToLogin": "¿Iporãpa nde mba'ekuaa? Jeike",
+    "loginError": "Jeike ndaikatúi",
+    "registerError": "Ñemboheraguapy ndaikatúi",
+    "loginSuccess": "Iporã jeike",
+    "registerSuccess": "Iporã ñemboheraguapy",
+    "invalidEmail": "Ñe'ẽveve ndaiporãi",
+    "passwordTooShort": "Ñe'ẽñemi 6 tai iva'erã",
+    "passwordsDontMatch": "Ñe'ẽñemikuéra ndoikói",
+    "emailRequired": "Ñe'ẽveve oikotevẽ",
+    "passwordRequired": "Ñe'ẽñemi oikotevẽ"
+  },
+  "userTypes": {
+    "driver": "Mba'yruhára",
+    "passenger": "Ogueraha",
+    "owner": "Iporãva",
+    "union": "Ñemboheko",
+    "selectType": "Eiporavo nde mba'ekuaa"
+  },
+  "payment": {
+    "paymentMethod": "Pago Rehegua",
+    "cardNumber": "Kuatia'atã papapy",
+    "expiryDate": "Paha ára",
+    "cvv": "CVV",
+    "cardholderName": "Kuatia'atã porãva réra",
+    "amount": "Mba'epy",
+    "pay": "Pago",
+    "paymentSuccess": "Iporã pago",
+    "paymentFailed": "Pago ndaikatúi"
+  },
+  "map": {
+    "currentLocation": "Aga aga",
+    "destination": "Oguahẽva",
+    "route": "Tape",
+    "distance": "Mombyry",
+    "duration": "Ara",
+    "startTrip": "Jeike ñepyrũ",
+    "endTrip": "Jeike paha"
+  },
+  "profile": {
+    "personalInfo": "Tapicha mba'ekuaa",
+    "firstName": "Téra",
+    "lastName": "Téra paha",
+    "phone": "Pumbyry",
+    "address": "Tenda",
+    "editProfile": "Mba'ekuaa ñemoambue",
+    "changePassword": "Ñe'ẽñemi ñemoambue"
+  },
+  "settings": {
+    "notifications": "Marandu",
+    "privacy": "Ñemi",
+    "about": "Mba'emimi",
+    "help": "Pytyvõ",
+    "contact": "Ñe'ẽ",
+    "terms": "Ñemboheko",
+    "privacyPolicy": "Ñemi ñemboheko"
+  },
+  "landing": {
+    "heroTitle": "Eiporavo nde mba'ekuaa",
+    "heroSubtitle": "Jeike hasy'ỹ ha iporã",
+    "roles": {
+      "pasajero": "Ogueraha",
+      "chofer": "Mba'yruhára",
+      "dueno_micro": "Mba'yru iporãva",
+      "dueno_sindicato": "Ñemboheko"
+    },
+    "descriptions": {
+      "pasajero": "Jeike ha pago hasy'ỹ",
+      "chofer": "Eñongatu nde jeike",
+      "dueno_micro": "Eñangareko nde mba'yru",
+      "dueno_sindicato": "Mba'ekuaa ha ñangareko"
+    },
+    "navigation": {
+      "home": "Óga",
+      "more": "Hetave"
+    }
+  },
+  "infoInicial": {
+    "title": "Ñepyrũ mba'ekuaa",
+    "subtitle": "Oikotevẽ ñambyaty hetave mba'ekuaa",
+    "phone": "Pumbyry",
+    "ciNumber": "CI papapy",
+    "phonePlaceholder": "Ej: +59170000000",
+    "ciPlaceholder": "Ej: 1234567890",
+    "validation": {
+      "completeFields": "Emyenyhẽ opaite mba'e.",
+      "invalidPhone": "Pumbyry ndaiporãi.",
+      "shortAccount": "Papapy mbykyeterei.",
+      "noUser": "Ndaipóri tapicha."
+    },
+    "success": {
+      "title": "Iporã",
+      "message": "Mba'ekuaa oñongatupyre"
+    },
+    "error": "Ñongatu ndaikatúi"
+  },
+  "passenger": {
+    "greeting": "Mba'éichapa, {userName}",
+    "balance": "Mba'epy",
+    "cards": "Kuatia'atã",
+    "wearables": "Peteĩchagua",
+    "link": "Ñemboheraguapy",
+    "connecting": "Oñemboheraguapy...",
+    "payNFC": "NFC ndive pago",
+    "nfcHint": "Pago rehe eike",
+    "nfcReady": "Iporã pago rehe",
+    "pay": "Pago",
+    "cardsTitle": "Puriyta kuatia'atã",
+    "wearablesTitle": "Puriyta peteĩchagua",
+    "add": "Yapaña",
+    "newCard": "Pyahu kuatia'atã",
+    "newWearable": "Pyahu peteĩchagua",
+    "status": {
+      "active": "Ruwaña",
+      "inactive": "Harkasita",
+      "inactiveWearable": "Manqhit ruwaña"
+    },
+    "credit": "Mba'epy Bs.",
+    "type": {
+      "physical": "Q'illu",
+      "virtual": "Virtual / QR"
+    },
+    "stats": {
+      "tripsThisMonth": "ko killa puriykuna",
+      "lastRoute": "Qhipa tape:",
+      "route": "Tape:",
+      "lastSync": "Huñuyta:",
+      "battery": "% batería"
+    },
+    "actions": {
+      "deleteCard": "Kuatia'atã pichaña",
+      "deleteWearable": "Peteĩchagua pichaña",
+      "deleteConfirm": "¿Kayta pichañata munayaxa?",
+      "cancel": "Pichaña",
+      "delete": "Pichaña",
+      "longPressTo": "Astawan ñak'aña",
+      "activate": "ruwañata qallaraña",
+      "block": "harkaña"
+    },
+    "alerts": {
+      "rechargeSuccess": "Waliki yapaña",
+      "rechargeMessage": "50 Bs yapañata qoyayku nde ñawpaq kuatia'atãman.",
+      "noCards": "Manqhit kuatia'atã",
+      "noCardsMessage": "Mba'epy yapañata kuatia'atã yapaña.",
+      "limitReached": "Tukuy",
+      "maxCards": "Astawan 5 kuatia'atã",
+      "maxWearables": "Astawan 5 peteĩchagua",
+      "error": "Pantata",
+      "createError": "Manqhit atiñani ruwaña",
+      "deleteError": "Manqhit atiñani pichaña"
+    }
+  },
+  "chofer": {
+    "title": "Mba'yruhára Panel",
+    "subtitle": "Eñongatu pago ha egueraha nde mba'epy",
+    "balanceLabel": "Ara mba'epy",
+    "transfer": "Gueraha",
+    "receiveNFC": "NFC ndive ñongatu",
+    "passengerStatus": {
+      "onboard": "mba'yrupe",
+      "offboard": "osẽ"
+    },
+    "balance": {
+      "show": "Hechauka",
+      "hide": "Ñomi"
+    },
+    "actions": {
+      "transferring": "Guerahata...",
+      "transferToAccount": "Ñe mba'epy rehe gueraha",
+      "listeningNFC": "NFC ndive oñehendúta...",
+      "receiveNFC": "NFC ndive pago ñongatu",
+      "passengerBoards": "Rekyguahára yayke",
+      "closeShift": "Ara paha"
+    },
+    "passengers": {
+      "currentTitle": "Kóva ára rekyguahára",
+      "emptyMessage": "Kóva ára ndaipóri rekyguahára.",
+      "onboard": "Mba'yrupe",
+      "offboard": "Osẽ"
+    },
+    "nfc": {
+      "overlayText": "Pago ñongatu rehe mba'yrupe eike...",
+      "paymentReceived": "¡NFC ndive pago ñongatupyre! +5 Bs"
+    },
+    "alerts": {
+      "transferSuccess": "Iporã gueraha: nde mba'epy ñe mba'epy rehe apopyre."
+    }
+  },
+  "payment": {
+    "title": "NFC Pago",
+    "subtitle": "Jeike ha pago ñembyai",
+    "nfcHint": "Pago rehe eike",
+    "processing": "Pago oñembo'e",
+    "success": "Iporã pago"
+  },
+  "map": {
+    "title": "Mba'yru tape",
+    "subtitle": "Ñembyai + tape rehegua",
+    "markers": {
+      "start": "Ñepyrũ",
+      "destination": "Oguahẽva",
+      "endRoute": "Tape paha"
+    }
+  },
+  "sindicato": {
+    "title": "Ñemboheko Panel",
+    "subtitle": "Opaite rehegua",
+    "totals": {
+      "sindicatos": "Ñemboheko",
+      "micros": "Mba'yru",
+      "choferes": "Mba'yruhára",
+      "activos": "Oñembo'e"
+    },
+    "ingresos": {
+      "label": "Ko ára mba'epy",
+      "title": "Ñemboheko añangarekóva"
+    },
+    "variation": "Ko ára ñemoambue",
+    "addButton": "Ñemboheko mbojuaju"
+  },
+  "dueno": {
+    "title": "Che mba'yru",
+    "subtitle": "Mba'yru mba'apo rehegua",
+    "metrics": {
+      "operativos": "Oñembo'e",
+      "mantenimiento": "Ñangareko",
+      "inactivos": "Ndaipóri oñembo'e"
+    },
+    "summary": {
+      "passengers": "Ko ára ogueraha",
+      "income": "Ko ára mba'epy"
+    },
+    "sectionTitle": "Mba'yru",
+    "addButton": "Mba'yru mbojuaju"
+  },
+  "explore": {
+    "title": "App rehegua",
+    "subtitle": "Camballey: jeike hasy'ỹ ha iporã",
+    "features": {
+      "routes": "Tape",
+      "fleet": "Mba'yru",
+      "maintenance": "Ñangareko",
+      "reports": "Mba'ekuaa"
+    },
+    "roadmap": "2025 tape rehegua",
+    "mission": "Tembiporã",
+    "profiles": "Tapicha ha mba'epy",
+    "keyFunctions": "Ñepyrũ mba'apo",
+    "technology": "Mba'ekuaa",
+    "nextImprovements": "Upeigua iporãve"
+  },
+  "infoTucan": {
+    "title": "¿Mba'épa Tucán?",
+    "subtitle": "Santa Cruz jeike rehegua",
+    "sections": {
+      "mission": "Ñande tembiporã",
+      "problems": "Mba'épa ñambyaty",
+      "components": "Ñepyrũ mba'apo",
+      "benefits": "Tapicha iporãve",
+      "security": "Ñemi ha jerovia",
+      "roadmap": "Tape rehegua (upeigua tembiporã)"
+    },
+    "backButton": "Kuatiape"
+  },
+  "sesion": {
+    "title": "Jeike",
+    "subtitle": "Iporã jeikejey",
+    "heroHeading": "¡Iporã jeikejey!",
+    "modeSwitch": "¿Ndaipóripa nde mba'ekuaa? Ñemboheraguapy",
+    "fields": {
+      "email": "Ñe'ẽveve",
+      "password": "Ñe'ẽñemi"
+    },
+    "placeholders": {
+      "email": "Ñe'ẽveve nde jeike",
+      "password": "Ñe'ẽñemi nde jeike"
+    },
+    "buttons": {
+      "login": "Jeike",
+      "switchToRegister": "¿Ndaipóripa nde mba'ekuaa? Ñemboheraguapy"
+    },
+    "validation": {
+      "emailRequired": "Ñe'ẽveve oikotevẽ",
+      "emailInvalid": "Ñe'ẽveve ndaiporãi",
+      "passwordRequired": "Ñe'ẽñemi oikotevẽ",
+      "passwordTooShort": "Ñe'ẽñemi 6 tai iva'erã"
+    },
+    "errors": {
+      "invalidCredentials": "Ñe'ẽñemi ndaiporãi",
+      "loginError": "Jeike ndaikatúi",
+      "completeFields": "Emyenyhẽ opaite mba'e",
+      "networkError": "Pumbyry javy"
+    },
+    "success": {
+      "loginSuccess": "Iporã jeike"
+    }
+  },
+  "register": {
+    "title": "Tucan ndive jeike",
+    "subtitle": "Eñemboheraguapy eñepyrũ hag̃ua",
+    "welcomeTitle": "¡Tucánpe iporã!",
+    "welcomeSubtitle": "Eñemboheraguapy eñepyrũ hag̃ua",
+    "fields": {
+      "fullName": "Téra opaite",
+      "email": "Ñe'ẽveve",
+      "password": "Ñe'ẽñemi",
+      "confirmPassword": "Ñe'ẽñemi moneĩ",
+      "phone": "Pumbyry"
+    },
+    "placeholders": {
+      "fullName": "Téra nde opaite",
+      "email": "Ñe'ẽveve nde jeike",
+      "password": "Ñe'ẽñemi iporã",
+      "confirmPassword": "Ñe'ẽñemi nde moneĩ",
+      "phone": "Pumbyry nde papapy"
+    },
+    "buttons": {
+      "register": "Ñemboheraguapy",
+      "switchToLogin": "¿Iporãpa nde mba'ekuaa? Jeike"
+    },
+    "validation": {
+      "nameRequired": "Téra oikotevẽ",
+      "emailRequired": "Ñe'ẽveve oikotevẽ",
+      "emailInvalid": "Ñe'ẽveve ndaiporãi",
+      "passwordRequired": "Ñe'ẽñemi oikotevẽ",
+      "passwordTooShort": "Ñe'ẽñemi 6 tai iva'erã",
+      "confirmPasswordRequired": "Ñe'ẽñemi moneĩ",
+      "passwordsDontMatch": "Ñe'ẽñemikuéra ndoikói",
+      "phoneRequired": "Pumbyry oikotevẽ",
+      "phoneInvalid": "Pumbyry papapy ndaiporãi"
+    },
+    "success": {
+      "title": "¡Ñemboheraguapy iporã!",
+      "message": "Ñemboheraguapy iporã. Eiporavóta nde mba'ekuaa."
+    },
+    "errors": {
+      "completeFields": "Emyenyhẽ opaite mba'e",
+      "userExists": "Ko ñe'ẽveve oĩmavoi",
+      "createError": "Ñemboheraguapy ndaikatúi",
+      "passwordMismatch": "Ñe'ẽñemikuéra ndoikói",
+      "invalidEmail": "Ñe'ẽveve ndaiporãi"
+    }
+  },
+  "index": {
+    "title": "Tucan",
+    "heroTitle": "¡Tucan ndive pago!",
+    "heroSubtitle": "Eipuru nde pumbyry térã peteĩchagua pago rehe. Pya'e, hasy'ỹ, iporã.",
+    "ctaButton": "Eikuaave",
+    "quickOptions": {
+      "map": "🗺️ Tenda rehegua",
+      "roles": "🚀 Mba'ekuaa",
+      "nfc": "💳 NFC"
+    }
+  },
+  "mapFallback": {
+    "title": "Tenda rehegua Fallback",
+    "subtitle": "Tenda rehegua oñembo'e"
+  }
+} 

@@ -4,9 +4,11 @@ import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, Alert, KeyboardAvoidingView, Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 export default function RegisterScreen() {
+    const { t } = useTranslation();
     const [regName, setRegName] = useState('');
     const [regEmail, setRegEmail] = useState('');
     const [regPassword, setRegPassword] = useState('');
@@ -27,32 +29,32 @@ export default function RegisterScreen() {
 
     async function doRegister() {
         setRegError('');
-        if (!regName || !regEmail || !regPassword) { 
-            setRegError('Completa todos los campos'); 
-            return; 
+        if (!regName || !regEmail || !regPassword) {
+            setRegError(t('register.errors.completeFields'));
+            return;
         }
-        
+
         setRegLoading(true);
         try {
             const { error } = await signUp(regEmail, regPassword, regName);
-                
+
             if (error) {
                 if (error.message.includes('User already registered')) {
-                    setRegError('Este correo ya está registrado');
+                    setRegError(t('register.errors.userExists'));
                 } else {
-                    setRegError(error.message || 'Error al crear la cuenta');
+                    setRegError(error.message || t('register.errors.createError'));
                 }
             } else {
                 Alert.alert(
-                    '¡Cuenta creada!', 
-                    'Tu cuenta ha sido creada exitosamente. Necesitarás seleccionar tu tipo de usuario.',
+                    t('register.success.title'),
+                    t('register.success.message'),
                     [{ text: 'OK', onPress: () => router.replace('./sesion' as any) }]
                 );
             }
         } catch (e: any) {
-            setRegError(e.message || 'Error al crear la cuenta');
-        } finally { 
-            setRegLoading(false); 
+            setRegError(e.message || t('register.errors.createError'));
+        } finally {
+            setRegLoading(false);
         }
     }
 
@@ -65,25 +67,25 @@ export default function RegisterScreen() {
                         <View style={styles.toucanContainer}>
                             <Image source={{ uri: toucanImg }} style={styles.toucan} contentFit="contain" />
                         </View>
-                        <ThemedText style={styles.welcomeTitle}>Únete a Tucan</ThemedText>
-                        <ThemedText style={styles.welcomeSubtitle}>Crea tu cuenta para comenzar</ThemedText>
+                        <ThemedText style={styles.welcomeTitle}>{t('register.welcomeTitle')}</ThemedText>
+                        <ThemedText style={styles.welcomeSubtitle}>{t('register.welcomeSubtitle')}</ThemedText>
                     </View>
 
                     {/* Register Form */}
                     <View style={styles.formCard}>
                         <View style={styles.inputContainer}>
                             <TextInput
-                                placeholder="Nombre completo"
+                                placeholder={t('register.placeholders.fullName')}
                                 placeholderTextColor="#94a3b8"
                                 style={styles.input}
                                 value={regName}
                                 onChangeText={setRegName}
                             />
                         </View>
-                        
+
                         <View style={styles.inputContainer}>
                             <TextInput
-                                placeholder="Correo electrónico"
+                                placeholder={t('register.placeholders.email')}
                                 placeholderTextColor="#94a3b8"
                                 autoCapitalize="none"
                                 keyboardType="email-address"
@@ -92,10 +94,10 @@ export default function RegisterScreen() {
                                 onChangeText={setRegEmail}
                             />
                         </View>
-                        
+
                         <View style={styles.inputContainer}>
                             <TextInput
-                                placeholder="Contraseña"
+                                placeholder={t('register.placeholders.password')}
                                 placeholderTextColor="#94a3b8"
                                 secureTextEntry
                                 style={styles.input}
@@ -106,24 +108,24 @@ export default function RegisterScreen() {
 
                         {regError ? <ThemedText style={styles.error}>{regError}</ThemedText> : null}
 
-                        <Pressable 
-                            disabled={regLoading} 
-                            onPress={doRegister} 
+                        <Pressable
+                            disabled={regLoading}
+                            onPress={doRegister}
                             style={({ pressed }) => [styles.registerBtn, pressed && styles.pressed]}
                         >
                             {regLoading ? (
                                 <ActivityIndicator color="#fff" size="small" />
                             ) : (
-                                <ThemedText style={styles.registerBtnText}>Crear cuenta</ThemedText>
+                                <ThemedText style={styles.registerBtnText}>{t('register.buttons.register')}</ThemedText>
                             )}
                         </Pressable>
                     </View>
 
                     {/* Footer */}
                     <View style={styles.footer}>
-                        <ThemedText style={styles.footerText}>¿Ya tienes cuenta?</ThemedText>
+                        <ThemedText style={styles.footerText}>{t('register.buttons.switchToLogin')}</ThemedText>
                         <Pressable onPress={() => router.replace('./sesion' as any)}>
-                            <ThemedText style={styles.loginLink}>Inicia sesión</ThemedText>
+                            <ThemedText style={styles.loginLink}>{t('auth.login')}</ThemedText>
                         </Pressable>
                     </View>
                 </View>

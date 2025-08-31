@@ -5,24 +5,29 @@ import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Animated, Pressable, SafeAreaView, StyleSheet, View } from 'react-native';
+
 const BRAND_PRIMARY = '#42af56';
 const BRAND_DARK = '#064420';
 const BRAND_YELLOW = '#ffd23f';
 
 const leavesLeft = 'https://lh3.googleusercontent.com/aida-public/AB6AXuAi5Hudz9HqNn74JcNFDaC71znohBidf_67i_pP6toPURAwyNziXOUnk-7n18XtAMj4AP-JEEn2F44DmkAESXcEX0Jyb58iBj8mkb0wO9QyAFs5Gec68UTCgEGmK4CGHTL0m5YhLt1fj5sGTKVRp1UkZT1tx6HSuRoofn9HVknFwRkT36cBGcwchldUMBSlv-xNohVvDfFHG_syT7js-tLzr9dcU7dusZ_RaBfsZuAtHerSB-TfUCa46C6pyL4XotOiE-DttP3C';
-const leavesRight = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDsZkRA4RfxQCu75LonCZyfRSpv_SoxMwzuNc60zc5WwyWpiqHAB5CihIL6kNKQKPsIytnLOtWY64LfKWVTkSVAvmunDiEtlbujjHptn6BZ04Imk13VMv1r9ZyePQBdSUxMUyrIgb5H0myMzTMVcnDAaxW6lbhb6GtuUwcVI_72-UPw0goC7k6AklKW4vpYU0rFbvgDhWoOaEeOS7FEj6n2SH-RQeritEIyLJZROHBHS3oeUPu8GIz9Q1zhlW7oKHAbhshk9Ld2';
-const toucanImg = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDzbyTb59rqOn1Hf4zyOCSN558QRJXjdqKQ0I0P1RE9I9cO4ILh_Gm6KI4N68VSjMWglNWXbMvbBlmEK78MvftwbM71sVuIRIJG3oinvTit3y2itd_LdyGxAGo_ZXZo2mkuGax8IzNQbzA-kvxOSvX74ivzTOmMJRa3mUMm5IixTCjvEOSgakHJ2cWV2CS0Fi7JIrfDQ4asJD750z3v7SnbuI5Jwi80gCLcVhuvc2kLgaat6Pe2zXIeZ3-BvRAFu0RmX_dBOmcr';
+const leavesRight = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDsZkRA4RfxQCu75LonCZyfRSpv_SoxMwzuNc60zc5WwyWpiqHAB5CihIL6kNKQKPsIytnLOtWY64LfKWVTkSVAvmunEtlbujjHptn6BZ04Imk13VMv1r9ZyePQBdSUxMUyrIgb5H0myMzTMVcnDAaxW6lbhb6GtuUwcVI_72-UPw0goC7k6AklKW4vpYU0rFbvgDhWoOaEeOS7FEj6n2SH-RQeritEIyLJZROHBHS3oeUPu8GIz9Q1zhlW7oKHAbhshk9Ld2';
+const toucanImg = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDzbyTb59rqOn1Hf4zyOCSN558QRJXjdqKQ0I0P1RE9I9cO4ILh_Gm6KI4N68VSjMWglNWXbMvbBlmEK78MvftwbM71sVuIRIJG3oinTit3y2itd_LdyGxAGo_ZXZo2mkuGax8IzNQbzA-kvxOSvX74ivzTOmMJRa3mUMm5IixTCjvEOSgakHJ2cWV2CS0Fi7JIrfDQ4asJD750z3v7SnbuI5Jwi80gCLcVhuvc2kLgaat6Pe2zXIeZ3-BvRAFu0RmX_dBOmcr';
 
 export default function TucanScreen() {
   const scheme = useColorScheme();
+  const { t, i18n } = useTranslation();
   const [active, setActive] = React.useState<'inicio' | 'beneficios' | 'recargar'>('inicio');
+  const [showLangMenu, setShowLangMenu] = React.useState(false);
+  const [lang, setLang] = React.useState(i18n.language);
   const scale = React.useRef(new Animated.Value(1)).current;
   const router = useRouter();
   const { userProfile, loading } = useAuth();
   const redirectedRef = useRef(false);
 
-  useEffect(()=>{
+  useEffect(() => {
     if (redirectedRef.current) return;
     if (loading) return;
     if (!userProfile) return; // no autenticado aún
@@ -36,20 +41,23 @@ export default function TucanScreen() {
     if (userProfile.tipo) {
       const path = userProfile.tipo === 1 ? '/passenger'
         : userProfile.tipo === 2 ? '/chofer'
-        : userProfile.tipo === 3 ? '/dueno'
-        : userProfile.tipo === 4 ? '/sindicato'
-        : null;
+          : userProfile.tipo === 3 ? '/dueno'
+            : userProfile.tipo === 4 ? '/sindicato'
+              : null;
       if (path) {
         redirectedRef.current = true;
         router.replace(path as any);
       }
     }
-  },[userProfile, loading, router]);
+  }, [userProfile, loading, router]);
+
   const onPressCTA = () => {
     Animated.sequence([
       Animated.timing(scale, { toValue: 0.94, duration: 90, useNativeDriver: true }),
       Animated.spring(scale, { toValue: 1, useNativeDriver: true }),
     ]).start();
+    setActive('beneficios');
+    router.replace("/sesion");
   };
 
   return (
@@ -60,52 +68,69 @@ export default function TucanScreen() {
           <Image source={{ uri: leavesRight }} style={styles.imgRight} />
         </View>
 
-        <View style={styles.header}> 
+        <View style={styles.header}>
           <View style={{ width: 48 }} />
-          <ThemedText type="title" style={styles.headerTitle}>Tucan</ThemedText>
-          <Pressable style={styles.iconBtn}>
-            <ThemedText style={styles.iconBtnText}>?</ThemedText>
-          </Pressable>
+          <ThemedText type="title" style={styles.headerTitle}>{t('index.title')}</ThemedText>
+          <View style={styles.headerRight}>
+            <Pressable style={styles.iconBtn} onPress={() => setShowLangMenu(m => !m)}>
+              <ThemedText style={styles.iconBtnText}>🌐</ThemedText>
+            </Pressable>
+            {showLangMenu && (
+              <View style={styles.langMenu}>
+                <Pressable style={styles.langOption} onPress={() => { i18n.changeLanguage('es'); setLang('es'); setShowLangMenu(false); }}>
+                  <ThemedText style={[styles.langOptionTxt, lang === 'es' && styles.langOptionActive]}>Español 🇪🇸</ThemedText>
+                </Pressable>
+                <Pressable style={styles.langOption} onPress={() => { i18n.changeLanguage('qu'); setLang('qu'); setShowLangMenu(false); }}>
+                  <ThemedText style={[styles.langOptionTxt, lang === 'qu' && styles.langOptionActive]}>Quechua 🇵🇪</ThemedText>
+                </Pressable>
+                <Pressable style={styles.langOption} onPress={() => { i18n.changeLanguage('ay'); setLang('ay'); setShowLangMenu(false); }}>
+                  <ThemedText style={[styles.langOptionTxt, lang === 'ay' && styles.langOptionActive]}>Aymara 🇧🇴</ThemedText>
+                </Pressable>
+                <Pressable style={styles.langOption} onPress={() => { i18n.changeLanguage('gn'); setLang('gn'); setShowLangMenu(false); }}>
+                  <ThemedText style={[styles.langOptionTxt, lang === 'gn' && styles.langOptionActive]}>Guaraní 🇵🇾</ThemedText>
+                </Pressable>
+              </View>
+            )}
+          </View>
         </View>
 
         <View style={styles.main}>
           <View style={styles.illustrationBox}>
             <Image source={{ uri: toucanImg }} style={styles.toucan} contentFit="contain" />
           </View>
-          <ThemedText style={styles.heroHeading}>¡Paga al toque con Tucan!</ThemedText>
+          <ThemedText style={styles.heroHeading}>{t('index.heroTitle')}</ThemedText>
           <ThemedText style={styles.heroParagraph}>
-            Usa tu cel o tu wearable para pagar sin contacto. Rápido, fácil y seguro.
+            {t('index.heroSubtitle')}
           </ThemedText>
           <Animated.View style={{ transform: [{ scale }] }}>
             <Pressable onPress={onPressCTA} style={styles.ctaBtn} android_ripple={{ color: '#00000022', borderless: false }}>
-              <ThemedText style={styles.ctaTxt}>Descubre más</ThemedText>
+              <ThemedText style={styles.ctaTxt}>{t('index.ctaButton')}</ThemedText>
             </Pressable>
           </Animated.View>
 
           {/* Opciones rápidas */}
           <View style={styles.optionsRow}>
             <Pressable style={styles.optionPill} onPress={() => router.push('/(tabs)/mapa')}>
-              <ThemedText style={styles.optionPillTxt}>🗺️ Mapa</ThemedText>
+              <ThemedText style={styles.optionPillTxt}>{t('index.quickOptions.map')}</ThemedText>
             </Pressable>
             <Pressable style={styles.optionPill} onPress={() => router.push('/(tabs)/landing')}>
-              <ThemedText style={styles.optionPillTxt}>🚀 Roles</ThemedText>
+              <ThemedText style={styles.optionPillTxt}>{t('index.quickOptions.roles')}</ThemedText>
             </Pressable>
             <Pressable style={styles.optionPill} onPress={() => router.push('/(tabs)/interfazPago')}>
-              <ThemedText style={styles.optionPillTxt}>💳 NFC</ThemedText>
+              <ThemedText style={styles.optionPillTxt}>{t('index.quickOptions.nfc')}</ThemedText>
             </Pressable>
           </View>
         </View>
 
         <View style={styles.footerGlass}>
           <View style={styles.tabsRow}>
-            <TabIcon label="Inicio" active={active==='inicio'} onPress={()=>setActive('inicio')} />
-            <TabIcon label="Comenzar" active={active==='beneficios'} onPress={()=>{setActive('beneficios');
-              router.replace("/sesion");
-             } } />
-            <TabIcon label="Mas sobre tucan" active={active==='recargar'} onPress={()=>{setActive('recargar');
-                            router.push("/infoTucan")                
-
-            } } />
+            <TabIcon label="Inicio" active={active === 'inicio'} onPress={() => {
+              setActive('inicio');
+            }} />
+            <TabIcon label="Mas sobre tucan" active={active === 'recargar'} onPress={() => {
+              setActive('recargar');
+              router.push("/infoTucan")
+            }} />
           </View>
           <View style={{ height: 20 }} />
         </View>
@@ -114,20 +139,12 @@ export default function TucanScreen() {
   );
 }
 
-function TabIcon({ label, active, onPress }: { label: string; active: boolean; onPress: ()=>void }) {
+function TabIcon({ label, active, onPress }: { label: string; active: boolean; onPress: () => void }) {
   return (
     <Pressable onPress={onPress} style={[styles.tabItem, active && styles.tabItemActive]}>
       <View style={[styles.tabIconCircle, active && styles.tabIconCircleActive]} />
       <ThemedText style={[styles.tabLabel, active && styles.tabLabelActive]}>{label}</ThemedText>
     </Pressable>
-  );
-}
-
-function OptionPill({ label }: { label: string }) {
-  return (
-    <View style={styles.optionPill}>
-      <ThemedText style={styles.optionPillTxt}>{label}</ThemedText>
-    </View>
   );
 }
 
@@ -137,8 +154,9 @@ const styles = StyleSheet.create({
   decorLayer: { position: 'absolute', inset: 0 },
   imgLeft: { position: 'absolute', top: 0, left: 0, width: 120, height: 120, opacity: 0.2 },
   imgRight: { position: 'absolute', bottom: '25%', right: 0, width: 110, height: 110, opacity: 0.2 },
-  header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingTop: 8 },
+  header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingTop: 20 },
   headerTitle: { textAlign: 'center', flex: 1, color: '#fff', fontSize: 22, fontWeight: '700', letterSpacing: -0.5 },
+  headerRight: { position: 'relative' },
   iconBtn: { height: 48, width: 48, borderRadius: 24, backgroundColor: 'rgba(255,255,255,0.2)', alignItems: 'center', justifyContent: 'center' },
   iconBtnText: { color: '#fff', fontWeight: '700' },
   main: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24 },
@@ -147,10 +165,14 @@ const styles = StyleSheet.create({
   heroHeading: { color: '#fff', fontSize: 30, fontWeight: '700', textAlign: 'center', marginBottom: 12, letterSpacing: -0.5 },
   heroParagraph: { color: 'rgba(255,255,255,0.8)', fontSize: 16, lineHeight: 22, textAlign: 'center', marginBottom: 28, maxWidth: 320 },
   ctaBtn: { minWidth: 160, height: 56, paddingHorizontal: 32, borderRadius: 32, backgroundColor: BRAND_YELLOW, alignItems: 'center', justifyContent: 'center', shadowColor: '#000', shadowOpacity: 0.25, shadowRadius: 8, elevation: 5 },
+  langMenu: { position: 'absolute', top: 110, right: 0, backgroundColor: '#fff', borderRadius: 14, padding: 10, shadowColor: '#000', shadowOpacity: 0.15, shadowRadius: 8, elevation: 8, zIndex: 99, minWidth: 150 },
+  langOption: { paddingVertical: 8, paddingHorizontal: 16 },
+  langOptionTxt: { fontSize: 15, color: '#064420', fontWeight: '600' },
+  langOptionActive: { color: '#42af56', fontWeight: '800' },
   ctaTxt: { color: BRAND_DARK, fontSize: 17, fontWeight: '700', letterSpacing: 0.5 },
   optionsRow: { flexDirection: 'row', gap: 10, marginTop: 32 },
-  optionPill: { flex:1, height:46, backgroundColor: 'rgba(255,255,255,0.18)', borderRadius: 28, alignItems:'center', justifyContent:'center', borderWidth:1, borderColor:'rgba(255,255,255,0.4)' },
-  optionPillTxt: { color: '#fff', fontSize: 13, fontWeight:'600', letterSpacing:0.2 },
+  optionPill: { flex: 1, height: 46, backgroundColor: 'rgba(255,255,255,0.18)', borderRadius: 28, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.4)' },
+  optionPillTxt: { color: '#fff', fontSize: 13, fontWeight: '600', letterSpacing: 0.2 },
   footerGlass: { backgroundColor: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(14px)', borderTopLeftRadius: 28, borderTopRightRadius: 28, paddingTop: 8 },
   tabsRow: { flexDirection: 'row', gap: 8, paddingHorizontal: 16 },
   tabItem: { flex: 1, alignItems: 'center', paddingVertical: 10, gap: 6 },

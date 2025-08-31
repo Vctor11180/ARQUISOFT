@@ -1,7 +1,8 @@
 import { ThemedText } from '@/components/ThemedText';
+import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
-import { Image } from 'expo-image';
+import { useTranslation } from 'react-i18next';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
 // --- Constantes y Tipos (Fuera del componente) ---
@@ -25,6 +26,7 @@ const leavesRight = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDsZkRA4
 
 // --- Componente Principal ---
 export default function DriverPanelScreen() {
+    const { t } = useTranslation();
     const [balance, setBalance] = useState(125.75);
     const [hidden, setHidden] = useState(false);
     const [passengers, setPassengers] = useState<Passenger[]>([
@@ -54,7 +56,7 @@ export default function DriverPanelScreen() {
         setTimeout(() => {
             setBalance(0);
             setTransfiriendo(false);
-            alert('Transferencia exitosa: el saldo fue enviado a tu cuenta bancaria.');
+            alert(t('chofer.alerts.transferSuccess'));
         }, 1200);
     };
 
@@ -84,8 +86,8 @@ export default function DriverPanelScreen() {
                         <Image source={{ uri: toucanImg }} style={styles.toucan} contentFit="contain" />
                     </View>
                     <View style={styles.headerTextCol}>
-                        <ThemedText style={styles.headerTitle}>Panel Chofer</ThemedText>
-                        <ThemedText style={styles.headerSubtitle}>Recibe pagos y transfiere tu saldo</ThemedText>
+                        <ThemedText style={styles.headerTitle}>{t('chofer.title')}</ThemedText>
+                        <ThemedText style={styles.headerSubtitle}>{t('chofer.subtitle')}</ThemedText>
                     </View>
                 </View>
             </LinearGradient>
@@ -95,34 +97,34 @@ export default function DriverPanelScreen() {
                 <View style={styles.section}>
                     <View style={styles.balanceRow}>
                         <View style={{ flex: 1 }}>
-                            <ThemedText style={styles.balanceLabel}>Saldo turno</ThemedText>
+                            <ThemedText style={styles.balanceLabel}>{t('chofer.balanceLabel')}</ThemedText>
                             <ThemedText style={styles.balanceValue}>{hidden ? '••••' : balance.toFixed(2) + ' Bs'}</ThemedText>
                         </View>
                         <Pressable style={styles.toggleBtn} onPress={() => setHidden(h => !h)}>
-                            <ThemedText style={styles.toggleTxt}>{hidden ? 'Mostrar' : 'Ocular'}</ThemedText>
+                            <ThemedText style={styles.toggleTxt}>{hidden ? t('chofer.balance.show') : t('chofer.balance.hide')}</ThemedText>
                         </Pressable>
                     </View>
 
                     <Pressable style={[styles.transferBtn, balance <= 0 && { opacity: 0.5 }]} onPress={handleTransferir} disabled={balance <= 0 || transfiriendo}>
-                        <ThemedText style={styles.transferBtnTxt}>{transfiriendo ? 'Transfiriendo...' : 'Transferir a mi cuenta'}</ThemedText>
+                        <ThemedText style={styles.transferBtnTxt}>{transfiriendo ? t('chofer.actions.transferring') : t('chofer.actions.transferToAccount')}</ThemedText>
                     </Pressable>
-                    
+
                     <Pressable style={[styles.nfcBtn, recibiendoNFC && { opacity: 0.7 }]} onPress={handleRecibirNFC} disabled={recibiendoNFC}>
-                        <ThemedText style={styles.nfcBtnTxt}>{recibiendoNFC ? 'Escuchando NFC...' : 'Recibir pago por NFC'}</ThemedText>
+                        <ThemedText style={styles.nfcBtnTxt}>{recibiendoNFC ? t('chofer.actions.listeningNFC') : t('chofer.actions.receiveNFC')}</ThemedText>
                     </Pressable>
 
                     <View style={styles.actionsRow}>
-                        <ActionChip label="Pasajero sube" onPress={simulateBoard} />
-                        <ActionChip label="Cerrar turno" variant='warn' onPress={settleShift} />
+                        <ActionChip label={t('chofer.actions.passengerBoards')} onPress={simulateBoard} />
+                        <ActionChip label={t('chofer.actions.closeShift')} variant='warn' onPress={settleShift} />
                     </View>
                 </View>
-                
+
                 {/* --- Sección de Pasajeros --- */}
                 <View style={styles.section}>
-                    <ThemedText style={styles.sectionTitle}>Pasajeros actuales ({onboardCount})</ThemedText>
+                    <ThemedText style={styles.sectionTitle}>{t('chofer.passengers.currentTitle')} ({onboardCount})</ThemedText>
                     {passengers.length === 0 && (
                         <View style={styles.emptyBox}>
-                            <ThemedText style={styles.emptyTxt}>Sin pasajeros en este momento.</ThemedText>
+                            <ThemedText style={styles.emptyTxt}>{t('chofer.passengers.emptyMessage')}</ThemedText>
                         </View>
                     )}
                     {passengers.map(p => (
@@ -131,7 +133,7 @@ export default function DriverPanelScreen() {
                                 <ThemedText style={styles.passengerName}>{p.name}</ThemedText>
                                 <ThemedText style={styles.passengerMeta}>{p.cardId} • {p.fare.toFixed(2)} Bs</ThemedText>
                                 <View style={[styles.statusBadge, p.status === 'bajó' && styles.statusBadgeLeft]}>
-                                    <ThemedText style={styles.statusBadgeTxt}>{p.status === 'a bordo' ? 'A bordo' : 'Bajó'}</ThemedText>
+                                    <ThemedText style={styles.statusBadgeTxt}>{p.status === 'a bordo' ? t('chofer.passengers.onboard') : t('chofer.passengers.offboard')}</ThemedText>
                                 </View>
                             </View>
                         </View>
@@ -145,13 +147,13 @@ export default function DriverPanelScreen() {
                     <View style={styles.nfcAnimCircle}>
                         <Image source={{ uri: toucanImg }} style={{ width: 54, height: 54 }} />
                     </View>
-                    <ThemedText style={styles.nfcOverlayTxt}>Acerca el dispositivo para recibir pago...</ThemedText>
+                    <ThemedText style={styles.nfcOverlayTxt}>{t('chofer.nfc.overlayText')}</ThemedText>
                 </View>
             )}
 
             {showPush && (
                 <View style={styles.pushNotif}>
-                    <ThemedText style={styles.pushNotifTxt}>¡Pago recibido por NFC! +5 Bs</ThemedText>
+                    <ThemedText style={styles.pushNotifTxt}>{t('chofer.nfc.paymentReceived')}</ThemedText>
                 </View>
             )}
         </View>

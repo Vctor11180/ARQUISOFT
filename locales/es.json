@@ -1,0 +1,408 @@
+{
+  "common": {
+    "welcome": "Bienvenido",
+    "login": "Iniciar Sesión",
+    "register": "Registrarse",
+    "logout": "Cerrar Sesión",
+    "profile": "Perfil",
+    "settings": "Configuración",
+    "language": "Idioma",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "show": "Ver",
+    "hide": "Ocultar"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "explore": "Explorar",
+    "map": "Mapa",
+    "driver": "Conductor",
+    "passenger": "Pasajero",
+    "owner": "Propietario",
+    "union": "Sindicato"
+  },
+  "auth": {
+    "login": "Iniciar Sesión",
+    "register": "Registrarse",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "signInWithGoogle": "Iniciar sesión con Google",
+    "dontHaveAccount": "¿No tienes cuenta?",
+    "alreadyHaveAccount": "¿Ya tienes cuenta?",
+    "createAccount": "Crear cuenta",
+    "loginTitle": "Iniciar Sesión",
+    "registerTitle": "Crear Cuenta",
+    "loginSubtitle": "Bienvenido de vuelta",
+    "registerSubtitle": "Únete a nuestra comunidad",
+    "emailPlaceholder": "Ingresa tu correo electrónico",
+    "passwordPlaceholder": "Ingresa tu contraseña",
+    "confirmPasswordPlaceholder": "Confirma tu contraseña",
+    "loginButton": "Iniciar Sesión",
+    "registerButton": "Crear Cuenta",
+    "switchToRegister": "¿No tienes cuenta? Regístrate",
+    "switchToLogin": "¿Ya tienes cuenta? Inicia sesión",
+    "loginError": "Error al iniciar sesión",
+    "registerError": "Error al registrarse",
+    "loginSuccess": "Sesión iniciada exitosamente",
+    "registerSuccess": "Cuenta creada exitosamente",
+    "invalidEmail": "Correo electrónico inválido",
+    "passwordTooShort": "La contraseña debe tener al menos 6 caracteres",
+    "passwordsDontMatch": "Las contraseñas no coinciden",
+    "emailRequired": "El correo electrónico es requerido",
+    "passwordRequired": "La contraseña es requerida"
+  },
+  "userTypes": {
+    "driver": "Conductor",
+    "passenger": "Pasajero",
+    "owner": "Propietario",
+    "union": "Sindicato",
+    "selectType": "Selecciona tu tipo de usuario"
+  },
+  "payment": {
+    "paymentMethod": "Método de Pago",
+    "cardNumber": "Número de Tarjeta",
+    "expiryDate": "Fecha de Vencimiento",
+    "cvv": "CVV",
+    "cardholderName": "Nombre del Titular",
+    "amount": "Monto",
+    "pay": "Pagar",
+    "paymentSuccess": "Pago Exitoso",
+    "paymentFailed": "Pago Fallido"
+  },
+  "map": {
+    "currentLocation": "Ubicación Actual",
+    "destination": "Destino",
+    "route": "Ruta",
+    "distance": "Distancia",
+    "duration": "Duración",
+    "startTrip": "Iniciar Viaje",
+    "endTrip": "Finalizar Viaje"
+  },
+  "profile": {
+    "personalInfo": "Información Personal",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "phone": "Teléfono",
+    "address": "Dirección",
+    "editProfile": "Editar Perfil",
+    "changePassword": "Cambiar Contraseña"
+  },
+  "settings": {
+    "notifications": "Notificaciones",
+    "privacy": "Privacidad",
+    "about": "Acerca de",
+    "help": "Ayuda",
+    "contact": "Contacto",
+    "terms": "Términos y Condiciones",
+    "privacyPolicy": "Política de Privacidad"
+  },
+  "landing": {
+    "heroTitle": "Elige tu perfil",
+    "heroSubtitle": "Movilidad simple y unificada",
+    "roles": {
+      "pasajero": "Pasajero",
+      "chofer": "Chofer",
+      "dueno_micro": "Dueño de micro",
+      "dueno_sindicato": "Sindicato"
+    },
+    "descriptions": {
+      "pasajero": "Viaja y paga fácil",
+      "chofer": "Registra tus viajes",
+      "dueno_micro": "Gestiona tu flota",
+      "dueno_sindicato": "Estadísticas y control"
+    },
+    "navigation": {
+      "home": "Home",
+      "more": "Más"
+    }
+  },
+  "infoInicial": {
+    "title": "Información inicial",
+    "subtitle": "Necesitamos algunos datos para continuar",
+    "phone": "Teléfono",
+    "ciNumber": "Número de CI",
+    "phonePlaceholder": "Ej: +59170000000",
+    "ciPlaceholder": "Ej: 1234567890",
+    "validation": {
+      "completeFields": "Completa ambos campos.",
+      "invalidPhone": "Teléfono inválido.",
+      "shortAccount": "Número de cuenta muy corto.",
+      "noUser": "No hay usuario."
+    },
+    "success": {
+      "title": "Listo",
+      "message": "Datos guardados correctamente"
+    },
+    "error": "Error al guardar"
+  },
+  "passenger": {
+    "greeting": "Hola, {userName}",
+    "balance": "Saldo",
+    "cards": "Tarjetas",
+    "wearables": "Manillas",
+    "link": "Vincular",
+    "connecting": "Conectando...",
+    "payNFC": "Pagar por NFC",
+    "nfcHint": "Acerca para pagar",
+    "nfcReady": "Listo para leer",
+    "pay": "Pagar",
+    "cardsTitle": "Tarjetas de transporte",
+    "wearablesTitle": "Manillas de transporte",
+    "add": "Agregar",
+    "newCard": "Nueva Tarjeta",
+    "newWearable": "Nueva Manilla",
+    "status": {
+      "active": "Activa",
+      "inactive": "Bloqueada",
+      "inactiveWearable": "Inactiva"
+    },
+    "credit": "Crédito Bs.",
+    "type": {
+      "physical": "Plástica",
+      "virtual": "Virtual / QR"
+    },
+    "stats": {
+      "tripsThisMonth": "viajes este mes",
+      "lastRoute": "Última ruta:",
+      "route": "Ruta:",
+      "lastSync": "Sincronizó:",
+      "battery": "% batería"
+    },
+    "actions": {
+      "deleteCard": "Eliminar tarjeta",
+      "deleteWearable": "Eliminar manilla",
+      "deleteConfirm": "¿Seguro que deseas eliminar este elemento?",
+      "cancel": "Cancelar",
+      "delete": "Eliminar",
+      "longPressTo": "Mantén presionado para",
+      "activate": "activar",
+      "block": "bloquear"
+    },
+    "alerts": {
+      "rechargeSuccess": "Recarga exitosa",
+      "rechargeMessage": "Se han recargado 50 Bs a tu tarjeta principal.",
+      "noCards": "Sin tarjetas",
+      "noCardsMessage": "Agrega una tarjeta para recargar saldo.",
+      "limitReached": "Límite",
+      "maxCards": "Máximo 5 tarjetas",
+      "maxWearables": "Máximo 5 manillas",
+      "error": "Error",
+      "createError": "No se pudo crear",
+      "deleteError": "No se pudo eliminar"
+    }
+  },
+  "chofer": {
+    "title": "Panel Chofer",
+    "subtitle": "Recibe pagos y transfiere tu saldo",
+    "balanceLabel": "Saldo turno",
+    "transfer": "Transferir",
+    "receiveNFC": "Recibir NFC",
+    "passengerStatus": {
+      "onboard": "a bordo",
+      "offboard": "bajó"
+    },
+    "balance": {
+      "show": "Mostrar",
+      "hide": "Ocular"
+    },
+    "actions": {
+      "transferring": "Transfiriendo...",
+      "transferToAccount": "Transferir a mi cuenta",
+      "listeningNFC": "Escuchando NFC...",
+      "receiveNFC": "Recibir pago por NFC",
+      "passengerBoards": "Pasajero sube",
+      "closeShift": "Cerrar turno"
+    },
+    "passengers": {
+      "currentTitle": "Pasajeros actuales",
+      "emptyMessage": "Sin pasajeros en este momento.",
+      "onboard": "A bordo",
+      "offboard": "Bajó"
+    },
+    "nfc": {
+      "overlayText": "Acerca el dispositivo para recibir pago...",
+      "paymentReceived": "¡Pago recibido por NFC! +5 Bs"
+    },
+    "alerts": {
+      "transferSuccess": "Transferencia exitosa: el saldo fue enviado a tu cuenta bancaria."
+    }
+  },
+  "payment": {
+    "title": "Pago NFC",
+    "subtitle": "Simulación de abordaje y débito",
+    "nfcHint": "Acerca para pagar",
+    "processing": "Procesando pago",
+    "success": "Pago exitoso"
+  },
+  "map": {
+    "title": "Ruta del micro",
+    "subtitle": "Animación + trazado ficticio",
+    "markers": {
+      "start": "Inicio",
+      "destination": "Destino",
+      "endRoute": "Fin de la ruta"
+    }
+  },
+  "sindicato": {
+    "title": "Panel Sindicatos",
+    "subtitle": "Visión consolidada",
+    "totals": {
+      "sindicatos": "Sindicatos",
+      "micros": "Micros",
+      "choferes": "Choferes",
+      "activos": "Activos"
+    },
+    "ingresos": {
+      "label": "Ingresos hoy",
+      "title": "Sindicatos que gestiono"
+    },
+    "variation": "Var. hoy",
+    "addButton": "Agregar sindicato"
+  },
+  "dueno": {
+    "title": "Mis Micros",
+    "subtitle": "Resumen operativo de flota",
+    "metrics": {
+      "operativos": "Operativos",
+      "mantenimiento": "Mantenimiento",
+      "inactivos": "Inactivos"
+    },
+    "summary": {
+      "passengers": "Pasajeros hoy",
+      "income": "Ingresos hoy"
+    },
+    "sectionTitle": "Flota",
+    "addButton": "Agregar micro"
+  },
+  "explore": {
+    "title": "Sobre la App",
+    "subtitle": "Camballey: movilidad organizada y transparente",
+    "features": {
+      "routes": "Rutas",
+      "fleet": "Flota",
+      "maintenance": "Mantenimiento",
+      "reports": "Reportes"
+    },
+    "roadmap": "Roadmap visual 2025",
+    "mission": "Misión",
+    "profiles": "Perfiles y valor",
+    "keyFunctions": "Funciones clave (MVP)",
+    "technology": "Tecnología",
+    "nextImprovements": "Próximas mejoras"
+  },
+  "infoTucan": {
+    "title": "¿Qué es Tucán?",
+    "subtitle": "Plataforma integrada de movilidad urbana para Santa Cruz",
+    "sections": {
+      "mission": "Nuestra misión",
+      "problems": "Problemas que resolvemos",
+      "components": "Componentes principales",
+      "benefits": "Beneficios por rol",
+      "security": "Seguridad y confianza",
+      "roadmap": "Hoja de ruta (próximos hitos)"
+    },
+    "backButton": "Volver"
+  },
+  "sesion": {
+    "title": "Iniciar Sesión",
+    "subtitle": "Bienvenido de vuelta",
+    "heroHeading": "¡Bienvenido de vuelta!",
+    "modeSwitch": "¿No tienes cuenta? Regístrate",
+    "fields": {
+      "email": "Correo electrónico",
+      "password": "Contraseña"
+    },
+    "placeholders": {
+      "email": "Ingresa tu correo electrónico",
+      "password": "Ingresa tu contraseña"
+    },
+    "buttons": {
+      "login": "Iniciar Sesión",
+      "switchToRegister": "¿No tienes cuenta? Regístrate"
+    },
+    "validation": {
+      "emailRequired": "El correo electrónico es requerido",
+      "emailInvalid": "Correo electrónico inválido",
+      "passwordRequired": "La contraseña es requerida",
+      "passwordTooShort": "La contraseña debe tener al menos 6 caracteres"
+    },
+    "errors": {
+      "invalidCredentials": "Credenciales inválidas",
+      "loginError": "Error al iniciar sesión",
+      "completeFields": "Completa todos los campos",
+      "networkError": "Error de conexión"
+    },
+    "success": {
+      "loginSuccess": "Sesión iniciada exitosamente"
+    }
+  },
+  "register": {
+    "title": "Únete a Tucan",
+    "subtitle": "Crea tu cuenta para comenzar",
+    "welcomeTitle": "¡Bienvenido a Tucán!",
+    "welcomeSubtitle": "Crea tu cuenta para comenzar",
+    "fields": {
+      "fullName": "Nombre completo",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "confirmPassword": "Confirmar contraseña",
+      "phone": "Teléfono"
+    },
+    "placeholders": {
+      "fullName": "Ingresa tu nombre completo",
+      "email": "Ingresa tu correo electrónico",
+      "password": "Crea una contraseña segura",
+      "confirmPassword": "Confirma tu contraseña",
+      "phone": "Ingresa tu número de teléfono"
+    },
+    "buttons": {
+      "register": "Crear Cuenta",
+      "switchToLogin": "¿Ya tienes cuenta? Inicia sesión"
+    },
+    "validation": {
+      "nameRequired": "El nombre es requerido",
+      "emailRequired": "El correo electrónico es requerido",
+      "emailInvalid": "Correo electrónico inválido",
+      "passwordRequired": "La contraseña es requerida",
+      "passwordTooShort": "La contraseña debe tener al menos 6 caracteres",
+      "confirmPasswordRequired": "Confirma tu contraseña",
+      "passwordsDontMatch": "Las contraseñas no coinciden",
+      "phoneRequired": "El teléfono es requerido",
+      "phoneInvalid": "Número de teléfono inválido"
+    },
+    "success": {
+      "title": "¡Cuenta creada!",
+      "message": "Tu cuenta ha sido creada exitosamente. Necesitarás seleccionar tu tipo de usuario."
+    },
+    "errors": {
+      "completeFields": "Completa todos los campos",
+      "userExists": "Este correo ya está registrado",
+      "createError": "Error al crear la cuenta",
+      "passwordMismatch": "Las contraseñas no coinciden",
+      "invalidEmail": "Correo electrónico inválido"
+    }
+  },
+  "index": {
+    "title": "Tucan",
+    "heroTitle": "¡Paga al toque con Tucan!",
+    "heroSubtitle": "Usa tu cel o tu wearable para pagar sin contacto. Rápido, fácil y seguro.",
+    "ctaButton": "Descubre más",
+    "quickOptions": {
+      "map": "🗺️ Mapa",
+      "roles": "🚀 Roles",
+      "nfc": "💳 NFC"
+    }
+  },
+  "mapFallback": {
+    "title": "Map Fallback",
+    "subtitle": "Pantalla en desarrollo"
+  }
+} 

@@ -1,0 +1,408 @@
+{
+  "common": {
+    "welcome": "Allillanchu",
+    "login": "Yaykuy",
+    "register": "Qillqay",
+    "logout": "Lluqsiy",
+    "profile": "Sutichasqa",
+    "settings": "Kamachiy",
+    "language": "Simi",
+    "save": "Waqaychay",
+    "cancel": "Pichay",
+    "confirm": "Yanapay",
+    "back": "Qhipaman",
+    "next": "Qhipaman",
+    "loading": "Suqay...",
+    "error": "Pantay",
+    "success": "Allin",
+    "show": "Rikuy",
+    "hide": "Pakay"
+  },
+  "navigation": {
+    "home": "Wasi",
+    "explore": "Maskay",
+    "map": "Suqta",
+    "driver": "Anta",
+    "passenger": "Riqsikuy",
+    "owner": "Kamachiq",
+    "union": "Tantachaku"
+  },
+  "auth": {
+    "login": "Yaykuy",
+    "register": "Qillqay",
+    "email": "Imaill",
+    "password": "Yachay",
+    "confirmPassword": "Yachay Yanapay",
+    "forgotPassword": "¿Yachayta qunqarqankichu?",
+    "signInWithGoogle": "Googlewan yaykuy",
+    "dontHaveAccount": "¿Manan qillqayniyki kanchu?",
+    "alreadyHaveAccount": "¿Ña qillqayniyki kanchu?",
+    "createAccount": "Qillqay kamay",
+    "loginTitle": "Yaykuy",
+    "registerTitle": "Qillqay",
+    "loginSubtitle": "Kusikuy kutimuyta",
+    "registerSubtitle": "Llank'aychaykunaman yaykuy",
+    "emailPlaceholder": "Imaillniyki yaykuchiy",
+    "passwordPlaceholder": "Yachayniyki yaykuchiy",
+    "confirmPasswordPlaceholder": "Yachayniyki allichay",
+    "loginButton": "Yaykuy",
+    "registerButton": "Qillqay",
+    "switchToRegister": "¿Manan qillqayniyki kanchu? Qillqay",
+    "switchToLogin": "¿Ña qillqayniyki kanchu? Yaykuy",
+    "loginError": "Yaykuyta mana atinayku",
+    "registerError": "Qillqayta mana atinayku",
+    "loginSuccess": "Allin yaykuy",
+    "registerSuccess": "Allin qillqay",
+    "invalidEmail": "Imaill mana allin",
+    "passwordTooShort": "Yachay 6 letra kachun",
+    "passwordsDontMatch": "Yachaykuna mana kikinku",
+    "emailRequired": "Imaill chaskiy",
+    "passwordRequired": "Yachay chaskiy"
+  },
+  "userTypes": {
+    "driver": "Anta",
+    "passenger": "Riqsikuy",
+    "owner": "Kamachiq",
+    "union": "Tantachaku",
+    "selectType": "Riqsikuy aylluyki akllay"
+  },
+  "payment": {
+    "paymentMethod": "Qullqi Qoyay",
+    "cardNumber": "Kardiyu Yupay",
+    "expiryDate": "Puchukay P'unchay",
+    "cvv": "CVV",
+    "cardholderName": "Kardiyu Kamachiq Suti",
+    "amount": "Qullqi",
+    "pay": "Qullqiy",
+    "paymentSuccess": "Allin Qullqi Qoyay",
+    "paymentFailed": "Manan Qullqi Qoyay"
+  },
+  "map": {
+    "currentLocation": "Kunan Tiyaq",
+    "destination": "Chayay",
+    "route": "Ñan",
+    "distance": "Saya",
+    "duration": "Pacha",
+    "startTrip": "Puriyta Qallariy",
+    "endTrip": "Puriyta Tukuy"
+  },
+  "profile": {
+    "personalInfo": "Sapa Runa Willay",
+    "firstName": "Suti",
+    "lastName": "Ayllu Suti",
+    "phone": "Llank'ana",
+    "address": "Tiyaq",
+    "editProfile": "Sutichasqata Hukllachay",
+    "changePassword": "Yachayta Hukllachay"
+  },
+  "settings": {
+    "notifications": "Willay",
+    "privacy": "Pakay",
+    "about": "Mantay",
+    "help": "Yanapay",
+    "contact": "Rimay",
+    "terms": "Kamachiy",
+    "privacyPolicy": "Pakay Kamachiy"
+  },
+  "landing": {
+    "heroTitle": "Aylluyki akllay",
+    "heroSubtitle": "Puriyta allichay",
+    "roles": {
+      "pasajero": "Riqsikuy",
+      "chofer": "Anta",
+      "dueno_micro": "Anta Kamachiq",
+      "dueno_sindicato": "Tantachaku"
+    },
+    "descriptions": {
+      "pasajero": "Puriyta qullqiyta qoyay",
+      "chofer": "Puriyta qillqay",
+      "dueno_micro": "Antakunata kamachiy",
+      "dueno_sindicato": "Yupay kamachiy"
+    },
+    "navigation": {
+      "home": "Wasi",
+      "more": "Astawan"
+    }
+  },
+  "infoInicial": {
+    "title": "Qallariy willay",
+    "subtitle": "Astawan willayta munayku",
+    "phone": "Llank'ana",
+    "ciNumber": "CI yupay",
+    "phonePlaceholder": "Ej: +59170000000",
+    "ciPlaceholder": "Ej: 1234567890",
+    "validation": {
+      "completeFields": "Chayllata qillqay.",
+      "invalidPhone": "Llank'ana pantay.",
+      "shortAccount": "Yupay nisyu pisiyachu.",
+      "noUser": "Manan runa kanchu."
+    },
+    "success": {
+      "title": "Allin",
+      "message": "Willayta waqaychayku"
+    },
+    "error": "Waqaychayta pantay"
+  },
+  "passenger": {
+    "greeting": "Allillanchu, {userName}",
+    "balance": "Qullqi",
+    "cards": "Kardiyukuna",
+    "wearables": "Manillakuna",
+    "link": "Huñuy",
+    "connecting": "Huñuyta...",
+    "payNFC": "NFCwan qullqiy",
+    "nfcHint": "Qullqiyta qoyay",
+    "nfcReady": "Qullqiyta qoyayta allin",
+    "pay": "Qullqiy",
+    "cardsTitle": "Puriyta kardiyukuna",
+    "wearablesTitle": "Puriyta manillakuna",
+    "add": "Yapay",
+    "newCard": "Musuq kardiyu",
+    "newWearable": "Musuq manilla",
+    "status": {
+      "active": "Ruway",
+      "inactive": "Harkasqa",
+      "inactiveWearable": "Manan ruway"
+    },
+    "credit": "Qullqi Bs.",
+    "type": {
+      "physical": "Q'illu",
+      "virtual": "Virtual / QR"
+    },
+    "stats": {
+      "tripsThisMonth": "kay killa puriykuna",
+      "lastRoute": "Qhipa ñan:",
+      "route": "Ñan:",
+      "lastSync": "Huñuyta:",
+      "battery": "% batería"
+    },
+    "actions": {
+      "deleteCard": "Kardiyuta pichay",
+      "deleteWearable": "Manillata pichay",
+      "deleteConfirm": "¿Kayta pichayta munankichu?",
+      "cancel": "Pichay",
+      "delete": "Pichay",
+      "longPressTo": "Astawan ñak'ay",
+      "activate": "ruwayta qallariy",
+      "block": "harkay"
+    },
+    "alerts": {
+      "rechargeSuccess": "Allin yapay",
+      "rechargeMessage": "50 Bs yapayta qoyayku nde ñawpaq kardiyuman.",
+      "noCards": "Manan kardiyukuna",
+      "noCardsMessage": "Qullqiyta yapayta kardiyu yapay.",
+      "limitReached": "Tukuy",
+      "maxCards": "Astawan 5 kardiyukuna",
+      "maxWearables": "Astawan 5 manillakuna",
+      "error": "Pantay",
+      "createError": "Manan atinayku ruwayta",
+      "deleteError": "Manan atinayku pichayta"
+    }
+  },
+  "chofer": {
+    "title": "Anta Panel",
+    "subtitle": "Qullqiyta chaskiy qhipaman apay",
+    "balanceLabel": "Turno qullqi",
+    "transfer": "Apay",
+    "receiveNFC": "NFCwan chaskiy",
+    "passengerStatus": {
+      "onboard": "antapi",
+      "offboard": "urman"
+    },
+    "balance": {
+      "show": "Rikuy",
+      "hide": "Pakay"
+    },
+    "actions": {
+      "transferring": "Apayta...",
+      "transferToAccount": "Qhipaman apay",
+      "listeningNFC": "NFCwan uyariyta...",
+      "receiveNFC": "NFCwan qullqiyta chaskiy",
+      "passengerBoards": "Riqsikuy yaykuy",
+      "closeShift": "Turno pichay"
+    },
+    "passengers": {
+      "currentTitle": "Kunan riqsikuykuna",
+      "emptyMessage": "Kunan manan riqsikuykuna kanchu.",
+      "onboard": "Antapi",
+      "offboard": "Urman"
+    },
+    "nfc": {
+      "overlayText": "Qullqiyta chaskiyta antapi eike...",
+      "paymentReceived": "¡NFCwan qullqiyta chaskiyku! +5 Bs"
+    },
+    "alerts": {
+      "transferSuccess": "Allin apay: qullqiyta qhipaman apayku."
+    }
+  },
+  "payment": {
+    "title": "NFC Qullqi",
+    "subtitle": "Yaykuyta qullqiyta simuy",
+    "nfcHint": "Qullqiyta qoyay",
+    "processing": "Qullqiyta ruway",
+    "success": "Allin qullqi"
+  },
+  "map": {
+    "title": "Anta ñan",
+    "subtitle": "Ruway + ñan qillqay",
+    "markers": {
+      "start": "Qallariy",
+      "destination": "Chayay",
+      "endRoute": "Ñan tukuy"
+    }
+  },
+  "sindicato": {
+    "title": "Tantachaku Panel",
+    "subtitle": "Tukuy rikuy",
+    "totals": {
+      "sindicatos": "Tantachakuna",
+      "micros": "Antakuna",
+      "choferes": "Antakuna",
+      "activos": "Ruwaykuna"
+    },
+    "ingresos": {
+      "label": "Kunan qullqi",
+      "title": "Kamachiy tantachakuna"
+    },
+    "variation": "Kunan hukllachay",
+    "addButton": "Tantachaku yapay"
+  },
+  "dueno": {
+    "title": "Ñuqa Antakuna",
+    "subtitle": "Anta ruway qillqay",
+    "metrics": {
+      "operativos": "Ruwaykuna",
+      "mantenimiento": "Allichay",
+      "inactivos": "Manan ruwaykuna"
+    },
+    "summary": {
+      "passengers": "Kunan riqsikuykuna",
+      "income": "Kunan qullqi"
+    },
+    "sectionTitle": "Antakuna",
+    "addButton": "Anta yapay"
+  },
+  "explore": {
+    "title": "App Mantay",
+    "subtitle": "Camballey: puriyta allichay",
+    "features": {
+      "routes": "Ñankuna",
+      "fleet": "Antakuna",
+      "maintenance": "Allichay",
+      "reports": "Willaykuna"
+    },
+    "roadmap": "2025 ñan qillqay",
+    "mission": "Kamay",
+    "profiles": "Runa hukllachay",
+    "keyFunctions": "Ñawpaq ruwaykuna",
+    "technology": "Yachay",
+    "nextImprovements": "Qhipa allichaykuna"
+  },
+  "infoTucan": {
+    "title": "¿Imataq Tucán?",
+    "subtitle": "Santa Cruz puriyta allichay",
+    "sections": {
+      "mission": "Ñuqa kamay",
+      "problems": "Sasachakuykuna",
+      "components": "Ñawpaq ruwaykuna",
+      "benefits": "Runa allichaykuna",
+      "security": "Pakay allichay",
+      "roadmap": "Ñan qillqay (qhipa ruwaykuna)"
+    },
+    "backButton": "Qhipaman"
+  },
+  "sesion": {
+    "title": "Yaykuy",
+    "subtitle": "Kusikuy kutimuyta",
+    "heroHeading": "¡Kusikuy kutimuyta!",
+    "modeSwitch": "¿Manan qillqayniyki kanchu? Qillqay",
+    "fields": {
+      "email": "Imaill",
+      "password": "Yachay"
+    },
+    "placeholders": {
+      "email": "Imaillniyki yaykuchiy",
+      "password": "Yachayniyki yaykuchiy"
+    },
+    "buttons": {
+      "login": "Yaykuy",
+      "switchToRegister": "¿Manan qillqayniyki kanchu? Qillqay"
+    },
+    "validation": {
+      "emailRequired": "Imaill chaskiy",
+      "emailInvalid": "Imaill mana allin",
+      "passwordRequired": "Yachay chaskiy",
+      "passwordTooShort": "Yachay 6 letra kachun"
+    },
+    "errors": {
+      "invalidCredentials": "Yachay mana allin",
+      "loginError": "Yaykuyta mana atinayku",
+      "completeFields": "Chayllata qillqay",
+      "networkError": "Llank'ana pantay"
+    },
+    "success": {
+      "loginSuccess": "Allin yaykuy"
+    }
+  },
+  "register": {
+    "title": "Tucanwan huñuy",
+    "subtitle": "Qillqayta qallariy",
+    "welcomeTitle": "¡Tucánman kusikuy!",
+    "welcomeSubtitle": "Qillqayta qallariy",
+    "fields": {
+      "fullName": "Sapa suti",
+      "email": "Imaill",
+      "password": "Yachay",
+      "confirmPassword": "Yachayta allichay",
+      "phone": "Llank'ana"
+    },
+    "placeholders": {
+      "fullName": "Sapa sutiyki yaykuchiy",
+      "email": "Imaillniyki yaykuchiy",
+      "password": "Yachay allin ruway",
+      "confirmPassword": "Yachayniyki allichay",
+      "phone": "Llank'anayki yupay yaykuchiy"
+    },
+    "buttons": {
+      "register": "Qillqay",
+      "switchToLogin": "¿Ña qillqayniyki kanchu? Yaykuy"
+    },
+    "validation": {
+      "nameRequired": "Suti chaskiy",
+      "emailRequired": "Imaill chaskiy",
+      "emailInvalid": "Imaill mana allin",
+      "passwordRequired": "Yachay chaskiy",
+      "passwordTooShort": "Yachay 6 letra kachun",
+      "confirmPasswordRequired": "Yachayta allichay",
+      "passwordsDontMatch": "Yachaykuna mana kikinku",
+      "phoneRequired": "Llank'ana chaskiy",
+      "phoneInvalid": "Llank'ana yupay mana allin"
+    },
+    "success": {
+      "title": "¡Qillqay allin!",
+      "message": "Qillqayki allin ruwayta. Aylluyki akllayta munayki."
+    },
+    "errors": {
+      "completeFields": "Chayllata qillqay",
+      "userExists": "Kay imaill ña qillqayta",
+      "createError": "Qillqayta pantay",
+      "passwordMismatch": "Yachaykuna mana kikinku",
+      "invalidEmail": "Imaill mana allin"
+    }
+  },
+  "index": {
+    "title": "Tucan",
+    "heroTitle": "¡Tucanwan qullqiy!",
+    "heroSubtitle": "Llank'anaykiwan qullqiyta qoyay. Rápido, fácil, seguro.",
+    "ctaButton": "Astawan rikuy",
+    "quickOptions": {
+      "map": "🗺️ Suqta",
+      "roles": "🚀 Ayllukuna",
+      "nfc": "💳 NFC"
+    }
+  },
+  "mapFallback": {
+    "title": "Suqta Fallback",
+    "subtitle": "Suqta ruwayta"
+  }
+} 

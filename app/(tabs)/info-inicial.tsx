@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, Pressable, ActivityIndicator, KeyboardAvoidingView, Platform, Alert } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { useAuth } from '@/contexts/AuthContext';
-import { useRouter } from 'expo-router';
 import { supabase } from '@/lib/supabaseClient';
+import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ActivityIndicator, Alert, KeyboardAvoidingView, Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 /**
  * Pantalla de captura de datos adicionales para el usuario en su primer inicio de sesión.
@@ -18,6 +19,7 @@ import { supabase } from '@/lib/supabaseClient';
 export default function InfoInicialScreen() {
   const { userProfile } = useAuth();
   const router = useRouter();
+  const { t } = useTranslation();
   const [telefono, setTelefono] = useState('');
   const [numeroCuenta, setNumeroCuenta] = useState('');
   const [loading, setLoading] = useState(false);
@@ -33,13 +35,13 @@ export default function InfoInicialScreen() {
 
   const validar = () => {
     if (!telefono.trim() || !numeroCuenta.trim()) {
-      return 'Completa ambos campos.';
+      return t('infoInicial.validation.completeFields');
     }
     if (!/^\+?\d{7,15}$/.test(telefono.trim())) {
-      return 'Teléfono inválido.';
+      return t('infoInicial.validation.invalidPhone');
     }
     if (numeroCuenta.trim().length < 4) {
-      return 'Número de cuenta muy corto.';
+      return t('infoInicial.validation.shortAccount');
     }
     return null;
   };
@@ -52,7 +54,7 @@ export default function InfoInicialScreen() {
       return;
     }
     if (!userProfile) {
-      setError('No hay usuario.');
+      setError(t('infoInicial.validation.noUser'));
       return;
     }
     try {
@@ -66,10 +68,10 @@ export default function InfoInicialScreen() {
         return;
       }
       // Opcional: podrías actualizar el cache local si luego amplías el perfil en AuthContext
-      Alert.alert('Listo', 'Datos guardados correctamente');
+      Alert.alert(t('infoInicial.success.title'), t('infoInicial.success.message'));
       router.replace('/landing');
     } catch (e: any) {
-      setError(e.message || 'Error al guardar');
+      setError(e.message || t('infoInicial.error'));
     } finally {
       setLoading(false);
     }
@@ -78,13 +80,13 @@ export default function InfoInicialScreen() {
   return (
     <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <View style={styles.card}>
-        <ThemedText type="title" style={styles.title}>Información inicial</ThemedText>
-        <ThemedText style={styles.subtitle}>Necesitamos algunos datos para continuar</ThemedText>
+        <ThemedText type="title" style={styles.title}>{t('infoInicial.title')}</ThemedText>
+        <ThemedText style={styles.subtitle}>{t('infoInicial.subtitle')}</ThemedText>
 
         <View style={styles.fieldGroup}>
-          <ThemedText style={styles.label}>Teléfono</ThemedText>
+          <ThemedText style={styles.label}>{t('infoInicial.phone')}</ThemedText>
           <TextInput
-            placeholder="Ej: +59170000000"
+            placeholder={t('infoInicial.phonePlaceholder')}
             value={telefono}
             onChangeText={setTelefono}
             keyboardType="phone-pad"
@@ -94,15 +96,15 @@ export default function InfoInicialScreen() {
         </View>
 
         <View style={styles.fieldGroup}>
-          <ThemedText style={styles.label}>Número de CI</ThemedText>
-            <TextInput
-              placeholder="Ej: 1234567890"
-              value={numeroCuenta}
-              onChangeText={setNumeroCuenta}
-              keyboardType="number-pad"
-              style={styles.input}
-              placeholderTextColor="#789"
-            />
+          <ThemedText style={styles.label}>{t('infoInicial.ciNumber')}</ThemedText>
+          <TextInput
+            placeholder={t('infoInicial.ciPlaceholder')}
+            value={numeroCuenta}
+            onChangeText={setNumeroCuenta}
+            keyboardType="number-pad"
+            style={styles.input}
+            placeholderTextColor="#789"
+          />
         </View>
 
         {error && <ThemedText style={styles.error}>{error}</ThemedText>}

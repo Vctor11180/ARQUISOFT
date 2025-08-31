@@ -1,0 +1,408 @@
+{
+  "common": {
+    "welcome": "Kamisaraki",
+    "login": "Yaqtaña",
+    "register": "Qillqataña",
+    "logout": "Lluqtaña",
+    "profile": "Sutichasita",
+    "settings": "Kamachita",
+    "language": "Aru",
+    "save": "Waqaychaña",
+    "cancel": "Pichaña",
+    "confirm": "Yanapaña",
+    "back": "Qhipa",
+    "next": "Qhipa",
+    "loading": "Suqtaña...",
+    "error": "Pantata",
+    "success": "Waliki",
+    "show": "Rikuña",
+    "hide": "Pakayaña"
+  },
+  "navigation": {
+    "home": "Uta",
+    "explore": "Taqiña",
+    "map": "Suqta",
+    "driver": "Anta",
+    "passenger": "Riqsikita",
+    "owner": "Kamachi",
+    "union": "Tantachakita"
+  },
+  "auth": {
+    "login": "Yaqtaña",
+    "register": "Qillqataña",
+    "email": "Imaill",
+    "password": "Yatichata",
+    "confirmPassword": "Yatichata Yanapaña",
+    "forgotPassword": "¿Yatichata qunqarapita?",
+    "signInWithGoogle": "Googlewan yaqtaña",
+    "dontHaveAccount": "¿Manqhit qillqayniyaxa?",
+    "alreadyHaveAccount": "¿Qillqayniyaxa utji?",
+    "createAccount": "Qillqay kamata",
+    "loginTitle": "Yaqtaña",
+    "registerTitle": "Qillqataña",
+    "loginSubtitle": "Kusikuy kutimuyta",
+    "registerSubtitle": "Llank'aychaykunaman yaqtaña",
+    "emailPlaceholder": "Imaillniyaxa yaykuchaña",
+    "passwordPlaceholder": "Yatichatayaxa yaykuchaña",
+    "confirmPasswordPlaceholder": "Yatichatayaxa allichaña",
+    "loginButton": "Yaqtaña",
+    "registerButton": "Qillqataña",
+    "switchToRegister": "¿Manqhit qillqayniyaxa? Qillqayaña",
+    "switchToLogin": "¿Qillqayniyaxa utji? Yaqtaña",
+    "loginError": "Yaqtañata mana atiñani",
+    "registerError": "Qillqatañata mana atiñani",
+    "loginSuccess": "Waliki yaqtaña",
+    "registerSuccess": "Waliki qillqataña",
+    "invalidEmail": "Imaill mana waliki",
+    "passwordTooShort": "Yatichata 6 letra kachun",
+    "passwordsDontMatch": "Yatichatakuna mana kikinku",
+    "emailRequired": "Imaill chaskiyaña",
+    "passwordRequired": "Yatichata chaskiyaña"
+  },
+  "userTypes": {
+    "driver": "Anta",
+    "passenger": "Riqsikita",
+    "owner": "Kamachi",
+    "union": "Tantachakita",
+    "selectType": "Riqsikita aylluyaxa akllaña"
+  },
+  "payment": {
+    "paymentMethod": "Qullqi Qoyaña",
+    "cardNumber": "Kardiyu Yupay",
+    "expiryDate": "Puchukay Uru",
+    "cvv": "CVV",
+    "cardholderName": "Kardiyu Kamachi Suti",
+    "amount": "Qullqi",
+    "pay": "Qullqiyaña",
+    "paymentSuccess": "Waliki Qullqi Qoyaña",
+    "paymentFailed": "Manqhit Qullqi Qoyaña"
+  },
+  "map": {
+    "currentLocation": "Kunat Tiyaq",
+    "destination": "Chayata",
+    "route": "Thakhi",
+    "distance": "Saya",
+    "duration": "Pacha",
+    "startTrip": "Puriyta Qallaraña",
+    "endTrip": "Puriyta Tukuyta"
+  },
+  "profile": {
+    "personalInfo": "Sapa Runa Willay",
+    "firstName": "Suti",
+    "lastName": "Ayllu Suti",
+    "phone": "Llank'ana",
+    "address": "Tiyaq",
+    "editProfile": "Sutichasit Hukllachaña",
+    "changePassword": "Yatichata Hukllachaña"
+  },
+  "settings": {
+    "notifications": "Willay",
+    "privacy": "Pakay",
+    "about": "Mantaña",
+    "help": "Yanapaña",
+    "contact": "Rimaña",
+    "terms": "Kamachita",
+    "privacyPolicy": "Pakay Kamachita"
+  },
+  "landing": {
+    "heroTitle": "Aylluyaxa akllaña",
+    "heroSubtitle": "Puriyta allichaña",
+    "roles": {
+      "pasajero": "Riqsikita",
+      "chofer": "Anta",
+      "dueno_micro": "Anta Kamachi",
+      "dueno_sindicato": "Tantachakita"
+    },
+    "descriptions": {
+      "pasajero": "Puriyta qullqiyta qoyaña",
+      "chofer": "Puriyta qillqataña",
+      "dueno_micro": "Antakunata kamachaña",
+      "dueno_sindicato": "Yupay kamachaña"
+    },
+    "navigation": {
+      "home": "Uta",
+      "more": "Astawan"
+    }
+  },
+  "infoInicial": {
+    "title": "Qallara willay",
+    "subtitle": "Astawan willayta munayku",
+    "phone": "Llank'ana",
+    "ciNumber": "CI yupay",
+    "phonePlaceholder": "Ej: +59170000000",
+    "ciPlaceholder": "Ej: 1234567890",
+    "validation": {
+      "completeFields": "Chayllata qillqayaña.",
+      "invalidPhone": "Llank'ana pantata.",
+      "shortAccount": "Yupay nisyu pisiyachu.",
+      "noUser": "Manqhit runa utji."
+    },
+    "success": {
+      "title": "Waliki",
+      "message": "Willayta waqaychayku"
+    },
+    "error": "Waqaychayta pantata"
+  },
+  "passenger": {
+    "greeting": "Kamisaraki, {userName}",
+    "balance": "Qullqi",
+    "cards": "Kardiyukuna",
+    "wearables": "Manillakuna",
+    "link": "Huñuyaña",
+    "connecting": "Huñuyta...",
+    "payNFC": "NFCwan qullqiyaña",
+    "nfcHint": "Qullqiyta qoyaña",
+    "nfcReady": "Qullqiyta qoyañata waliki",
+    "pay": "Qullqiyaña",
+    "cardsTitle": "Puriyta kardiyukuna",
+    "wearablesTitle": "Puriyta manillakuna",
+    "add": "Yapaña",
+    "newCard": "Musuq kardiyu",
+    "newWearable": "Musuq manilla",
+    "status": {
+      "active": "Ruwaña",
+      "inactive": "Harkasita",
+      "inactiveWearable": "Manqhit ruwaña"
+    },
+    "credit": "Qullqi Bs.",
+    "type": {
+      "physical": "Q'illu",
+      "virtual": "Virtual / QR"
+    },
+    "stats": {
+      "tripsThisMonth": "kay killa puriykuna",
+      "lastRoute": "Qhipa thakhi:",
+      "route": "Thakhi:",
+      "lastSync": "Huñuyta:",
+      "battery": "% batería"
+    },
+    "actions": {
+      "deleteCard": "Kardiyuta pichaña",
+      "deleteWearable": "Manillata pichaña",
+      "deleteConfirm": "¿Kayta pichañata munayaxa?",
+      "cancel": "Pichaña",
+      "delete": "Pichaña",
+      "longPressTo": "Astawan ñak'aña",
+      "activate": "ruwañata qallaraña",
+      "block": "harkaña"
+    },
+    "alerts": {
+      "rechargeSuccess": "Waliki yapaña",
+      "rechargeMessage": "50 Bs yapañata qoyayku nde ñawpaq kardiyuman.",
+      "noCards": "Manqhit kardiyukuna",
+      "noCardsMessage": "Qullqiyta yapañata kardiyu yapaña.",
+      "limitReached": "Tukuy",
+      "maxCards": "Astawan 5 kardiyukuna",
+      "maxWearables": "Astawan 5 manillakuna",
+      "error": "Pantata",
+      "createError": "Manqhit atiñani ruwaña",
+      "deleteError": "Manqhit atiñani pichaña"
+    }
+  },
+  "chofer": {
+    "title": "Anta Panel",
+    "subtitle": "Qullqiyta chaskita qhipa apataña",
+    "balanceLabel": "Turno qullqi",
+    "transfer": "Apaña",
+    "receiveNFC": "NFCwan chaskitaña",
+    "passengerStatus": {
+      "onboard": "antapi",
+      "offboard": "urman"
+    },
+    "balance": {
+      "show": "Uñjaña",
+      "hide": "Pakayaña"
+    },
+    "actions": {
+      "transferring": "Apañata...",
+      "transferToAccount": "Qhipaman apaña",
+      "listeningNFC": "NFCwan uyariyañata...",
+      "receiveNFC": "NFCwan qullqiyta chaskiyaña",
+      "passengerBoards": "Riqsikuy yaykuyaña",
+      "closeShift": "Turno pichaña"
+    },
+    "passengers": {
+      "currentTitle": "Kunan riqsikuykuna",
+      "emptyMessage": "Kunan manqhit riqsikuykuna kaniti.",
+      "onboard": "Antapi",
+      "offboard": "Urman"
+    },
+    "nfc": {
+      "overlayText": "Qullqiyta chaskiyañata antapi eike...",
+      "paymentReceived": "¡NFCwan qullqiyta chaskiyku! +5 Bs"
+    },
+    "alerts": {
+      "transferSuccess": "Waliki apaña: qullqiyta qhipaman apayku."
+    }
+  },
+  "payment": {
+    "title": "NFC Qullqi",
+    "subtitle": "Yaqtañata qullqiyta simuña",
+    "nfcHint": "Qullqiyta qoyaña",
+    "processing": "Qullqiyta ruwaña",
+    "success": "Waliki qullqi"
+  },
+  "map": {
+    "title": "Anta thakhi",
+    "subtitle": "Ruwaña + thakhi qillqaña",
+    "markers": {
+      "start": "Qallara",
+      "destination": "Chayata",
+      "endRoute": "Thakhi tukuyta"
+    }
+  },
+  "sindicato": {
+    "title": "Tantachakita Panel",
+    "subtitle": "Tukuy rikuña",
+    "totals": {
+      "sindicatos": "Tantachakita",
+      "micros": "Antakuna",
+      "choferes": "Antakuna",
+      "activos": "Ruwaykuna"
+    },
+    "ingresos": {
+      "label": "Kunat qullqi",
+      "title": "Kamacha tantachakita"
+    },
+    "variation": "Kunat hukllachaña",
+    "addButton": "Tantachakita yapaña"
+  },
+  "dueno": {
+    "title": "Ñuqa Antakuna",
+    "subtitle": "Anta ruway qillqaña",
+    "metrics": {
+      "operativos": "Ruwaykuna",
+      "mantenimiento": "Allichaña",
+      "inactivos": "Manqhit ruwaykuna"
+    },
+    "summary": {
+      "passengers": "Kunat riqsikitakuna",
+      "income": "Kunat qullqi"
+    },
+    "sectionTitle": "Antakuna",
+    "addButton": "Anta yapaña"
+  },
+  "explore": {
+    "title": "App Mantaña",
+    "subtitle": "Camballey: puriyta allichaña",
+    "features": {
+      "routes": "Thakhikuna",
+      "fleet": "Antakuna",
+      "maintenance": "Allichaña",
+      "reports": "Willaykuna"
+    },
+    "roadmap": "2025 thakhi qillqaña",
+    "mission": "Kamata",
+    "profiles": "Runa hukllachaña",
+    "keyFunctions": "Ñawpaq ruwaykuna",
+    "technology": "Yatichata",
+    "nextImprovements": "Qhipa allichaykuna"
+  },
+  "infoTucan": {
+    "title": "¿Kawkhataq Tucán?",
+    "subtitle": "Santa Cruz puriyta allichaña",
+    "sections": {
+      "mission": "Ñuqa kamata",
+      "problems": "Sasachakuykuna",
+      "components": "Ñawpaq ruwaykuna",
+      "benefits": "Runa allichaykuna",
+      "security": "Pakay allichaña",
+      "roadmap": "Thakhi qillqaña (qhipa ruwaykuna)"
+    },
+    "backButton": "Qhipa"
+  },
+  "sesion": {
+    "title": "Yaqtaña",
+    "subtitle": "Kusikuy kutimuyta",
+    "heroHeading": "¡Kusikuy kutimuyta!",
+    "modeSwitch": "¿Manqhit qillqayniyaxa? Qillqayaña",
+    "fields": {
+      "email": "Imaill",
+      "password": "Yatichata"
+    },
+    "placeholders": {
+      "email": "Imaillniyaxa yaykuchaña",
+      "password": "Yatichatayaxa yaykuchaña"
+    },
+    "buttons": {
+      "login": "Yaqtaña",
+      "switchToRegister": "¿Manqhit qillqayniyaxa? Qillqayaña"
+    },
+    "validation": {
+      "emailRequired": "Imaill chaskiyaña",
+      "emailInvalid": "Imaill mana waliki",
+      "passwordRequired": "Yatichata chaskiyaña",
+      "passwordTooShort": "Yatichata 6 letra kachun"
+    },
+    "errors": {
+      "invalidCredentials": "Yatichata mana waliki",
+      "loginError": "Yaqtañata mana atiñani",
+      "completeFields": "Chayllata qillqayaña",
+      "networkError": "Llank'ana pantata"
+    },
+    "success": {
+      "loginSuccess": "Waliki yaqtaña"
+    }
+  },
+  "register": {
+    "title": "Tucanwan huñuyaña",
+    "subtitle": "Qillqataña qallaraña",
+    "welcomeTitle": "¡Tucánman kusikuy!",
+    "welcomeSubtitle": "Qillqataña qallaraña",
+    "fields": {
+      "fullName": "Sapa suti",
+      "email": "Imaill",
+      "password": "Yatichata",
+      "confirmPassword": "Yatichata allichaña",
+      "phone": "Llank'ana"
+    },
+    "placeholders": {
+      "fullName": "Sapa sutiyaxa yaykuchaña",
+      "email": "Imaillniyaxa yaykuchaña",
+      "password": "Yatichata waliki ruway",
+      "confirmPassword": "Yatichatayaxa allichaña",
+      "phone": "Llank'anayaxa yupay yaykuchaña"
+    },
+    "buttons": {
+      "register": "Qillqataña",
+      "switchToLogin": "¿Qillqayniyaxa utji? Yaqtaña"
+    },
+    "validation": {
+      "nameRequired": "Suti chaskiyaña",
+      "emailRequired": "Imaill chaskiyaña",
+      "emailInvalid": "Imaill mana waliki",
+      "passwordRequired": "Yatichata chaskiyaña",
+      "passwordTooShort": "Yatichata 6 letra kachun",
+      "confirmPasswordRequired": "Yatichata allichaña",
+      "passwordsDontMatch": "Yatichatakuna mana kikinku",
+      "phoneRequired": "Llank'ana chaskiyaña",
+      "phoneInvalid": "Llank'ana yupay mana waliki"
+    },
+    "success": {
+      "title": "¡Qillqata waliki!",
+      "message": "Qillqayaxa waliki ruwayta. Aylluyaxa akllañata munayki."
+    },
+    "errors": {
+      "completeFields": "Chayllata qillqayaña",
+      "userExists": "Kay imaill ña qillqayaxa",
+      "createError": "Qillqataña pantata",
+      "passwordMismatch": "Yatichatakuna mana kikinku",
+      "invalidEmail": "Imaill mana waliki"
+    }
+  },
+  "index": {
+    "title": "Tucan",
+    "heroTitle": "¡Tucanwan qullqiyaña!",
+    "heroSubtitle": "Llank'anayaxa qullqiyta qoyaña. Rápido, fácil, seguro.",
+    "ctaButton": "Astawan rikuña",
+    "quickOptions": {
+      "map": "🗺️ Suqta",
+      "roles": "🚀 Ayllukuna",
+      "nfc": "💳 NFC"
+    }
+  },
+  "mapFallback": {
+    "title": "Suqta Fallback",
+    "subtitle": "Suqta ruwayta"
+  }
+} 

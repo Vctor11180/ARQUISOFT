@@ -1,11 +1,13 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function MapFallbackScreen() {
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Map Fallback</Text>
-      <Text style={styles.subtitle}>Pantalla en desarrollo</Text>
+      <Text style={styles.title}>{t('mapFallback.title')}</Text>
+      <Text style={styles.subtitle}>{t('mapFallback.subtitle')}</Text>
     </View>
   );
 }

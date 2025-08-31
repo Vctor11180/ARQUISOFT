@@ -1,20 +1,22 @@
+import LanguageButton from '@/components/LanguageButton';
 import { ThemedText } from '@/components/ThemedText';
 import { useAuth } from '@/contexts/AuthContext';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import React, { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
-    ActivityIndicator,
-    Alert,
-    Animated,
-    KeyboardAvoidingView,
-    Platform,
-    Pressable,
-    StyleSheet,
-    Text,
-    TextInput,
-    View
+  ActivityIndicator,
+  Alert,
+  Animated,
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View
 } from 'react-native';
 
 // Paleta de marca (coherente con index.tsx)
@@ -37,14 +39,15 @@ export default function SesionScreen() {
   const [loading, setLoading] = useState(false);
   const scaleCTA = useRef(new Animated.Value(1)).current;
   const { signIn, signUp, userProfile } = useAuth();
+  const { t } = useTranslation();
 
   const validateBasics = () => {
     if (!email || !password || (mode === 'register' && !name)) {
-      Alert.alert('Campos incompletos', 'Completa todos los campos.');
+      Alert.alert(t('common.error'), t('sesion.errors.completeFields'));
       return false;
     }
     if (password.length < 6) {
-      Alert.alert('Contraseña débil', 'Mínimo 6 caracteres.');
+      Alert.alert(t('common.error'), t('sesion.validation.passwordTooShort'));
       return false;
     }
     return true;
@@ -74,7 +77,7 @@ export default function SesionScreen() {
       if (mode === 'login') {
         await signIn(email, password);
         // Esperar a que el AuthContext cargue el perfil (pequeño delay)
-        setTimeout(()=>{
+        setTimeout(() => {
           const perfil = userProfile; // puede ser null inmediatamente tras login la primera vez
           // Si todavía no está, enviamos al index que ahora autoredirige.
           if (!perfil) {
@@ -85,15 +88,15 @@ export default function SesionScreen() {
             router.replace('/info-inicial');
             return;
           }
-            if (perfil.tipo) {
-              router.replace(pathForTipo(perfil.tipo) as any);
-            } else {
-              router.replace('/landing');
-            }
+          if (perfil.tipo) {
+            router.replace(pathForTipo(perfil.tipo) as any);
+          } else {
+            router.replace('/landing');
+          }
         }, 350);
       } else {
         await signUp(email, password, name);
-        Alert.alert('Registro exitoso', 'Ahora inicia sesión.');
+        Alert.alert(t('register.success.title'), t('register.success.message'));
         setMode('login');
       }
     } catch (e: any) {
@@ -113,95 +116,102 @@ export default function SesionScreen() {
         </View>
 
         <View style={styles.contentWrapper}>
+          {/* Botón de cambio de idioma en la esquina superior derecha */}
+          <View style={styles.languageButtonContainer}>
+            <LanguageButton compact={true} />
+          </View>
+
           {/* Ilustración */}
-            <View style={styles.illustrationBox}>
-              <Image source={{ uri: toucanImg }} style={styles.toucan} contentFit="contain" />
-            </View>
-            <ThemedText style={styles.heroHeading}>{mode === 'login' ? 'Bienvenido de vuelta' : 'Crea tu cuenta'}</ThemedText>
-            <ThemedText style={styles.heroParagraph}>
-              {mode === 'login'
-                ? 'Accede para continuar con tus viajes y pagos NFC.'
-                : 'Regístrate para empezar a usar el ecosistema Tucán.'}
-            </ThemedText>
+          <View style={styles.illustrationBox}>
+            <Image source={{ uri: toucanImg }} style={styles.toucan} contentFit="contain" />
+          </View>
+          <ThemedText style={styles.heroHeading}>
+            {mode === 'login' ? t('sesion.heroHeading') : t('register.welcomeTitle')}
+          </ThemedText>
+          <ThemedText style={styles.heroParagraph}>
+            {mode === 'login'
+              ? t('sesion.subtitle')
+              : t('register.welcomeSubtitle')}
+          </ThemedText>
 
-            {/* Toggle Login / Register */}
-            <View style={styles.modeSwitch}>
-              <Pressable onPress={() => setMode('login')} style={[styles.modeBtn, mode === 'login' && styles.modeBtnActive]}>
-                <Text style={[styles.modeBtnText, mode === 'login' && styles.modeBtnTextActive]}>Iniciar Sesión</Text>
-              </Pressable>
-              <Pressable onPress={() => setMode('register')} style={[styles.modeBtn, mode === 'register' && styles.modeBtnActive]}>
-                <Text style={[styles.modeBtnText, mode === 'register' && styles.modeBtnTextActive]}>Registrarme</Text>
-              </Pressable>
-            </View>
+          {/* Toggle Login / Register */}
+          <View style={styles.modeSwitch}>
+            <Pressable onPress={() => setMode('login')} style={[styles.modeBtn, mode === 'login' && styles.modeBtnActive]}>
+              <Text style={[styles.modeBtnText, mode === 'login' && styles.modeBtnTextActive]}>{t('auth.login')}</Text>
+            </Pressable>
+            <Pressable onPress={() => setMode('register')} style={[styles.modeBtn, mode === 'register' && styles.modeBtnActive]}>
+              <Text style={[styles.modeBtnText, mode === 'register' && styles.modeBtnTextActive]}>{t('auth.register')}</Text>
+            </Pressable>
+          </View>
 
-            <View style={styles.formCard}>
-              {mode === 'register' && (
-                <View style={styles.inputWrapper}>
-                  <Text style={styles.inputLabel}>Nombre completo</Text>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Tu nombre"
-                    placeholderTextColor="#9ca3af"
-                    value={name}
-                    onChangeText={setName}
-                    autoCapitalize="words"
-                  />
-                </View>
-              )}
+          <View style={styles.formCard}>
+            {mode === 'register' && (
               <View style={styles.inputWrapper}>
-                <Text style={styles.inputLabel}>Email</Text>
+                <Text style={styles.inputLabel}>{t('register.fields.fullName')}</Text>
                 <TextInput
                   style={styles.input}
-                  placeholder="correo@dominio.com"
+                  placeholder={t('register.placeholders.fullName')}
                   placeholderTextColor="#9ca3af"
-                  value={email}
-                  onChangeText={setEmail}
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                  autoCorrect={false}
+                  value={name}
+                  onChangeText={setName}
+                  autoCapitalize="words"
                 />
               </View>
-              <View style={styles.inputWrapper}>
-                <Text style={styles.inputLabel}>Contraseña</Text>
-                <View style={styles.passwordRow}>
-                  <TextInput
-                    style={[styles.input, { flex: 1 }]}
-                    placeholder="Mínimo 6 caracteres"
-                    placeholderTextColor="#9ca3af"
-                    value={password}
-                    onChangeText={setPassword}
-                    secureTextEntry={secure}
-                    autoCapitalize="none"
-                  />
-                  <Pressable onPress={() => setSecure(s => !s)} style={styles.showBtn}>
-                    <Text style={styles.showBtnText}>{secure ? 'Ver' : 'Ocultar'}</Text>
-                  </Pressable>
-                </View>
-              </View>
-
-              <Animated.View style={{ transform: [{ scale: scaleCTA }] }}>
-                <Pressable disabled={loading} onPress={() => { animateCTA(); doAction(); }} style={styles.ctaBtn}>
-                  {loading ? (
-                    <ActivityIndicator color={BRAND_DARK} />
-                  ) : (
-                    <Text style={styles.ctaBtnText}>{mode === 'login' ? 'Entrar' : 'Crear Cuenta'}</Text>
-                  )}
-                </Pressable>
-              </Animated.View>
-
-              {mode === 'login' && (
-                <Pressable style={styles.altLink} onPress={() => setMode('register')}>
-                  <Text style={styles.altLinkText}>¿No tienes cuenta? Regístrate</Text>
-                </Pressable>
-              )}
-              {mode === 'register' && (
-                <Pressable style={styles.altLink} onPress={() => setMode('login')}>
-                  <Text style={styles.altLinkText}>¿Ya tienes cuenta? Inicia sesión</Text>
-                </Pressable>
-              )}
-
-              <Text style={styles.helperText}>Tras el registro podrás elegir tu tipo de usuario.</Text>
+            )}
+            <View style={styles.inputWrapper}>
+              <Text style={styles.inputLabel}>{t('auth.email')}</Text>
+              <TextInput
+                style={styles.input}
+                placeholder={t('sesion.placeholders.email')}
+                placeholderTextColor="#9ca3af"
+                value={email}
+                onChangeText={setEmail}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoCorrect={false}
+              />
             </View>
+            <View style={styles.inputWrapper}>
+              <Text style={styles.inputLabel}>{t('auth.password')}</Text>
+              <View style={styles.passwordRow}>
+                <TextInput
+                  style={[styles.input, { flex: 1 }]}
+                  placeholder={t('sesion.placeholders.password')}
+                  placeholderTextColor="#9ca3af"
+                  value={password}
+                  onChangeText={setPassword}
+                  secureTextEntry={secure}
+                  autoCapitalize="none"
+                />
+                <Pressable onPress={() => setSecure(s => !s)} style={styles.showBtn}>
+                  <Text style={styles.showBtnText}>{secure ? t('common.show') : t('common.hide')}</Text>
+                </Pressable>
+              </View>
+            </View>
+
+            <Animated.View style={{ transform: [{ scale: scaleCTA }] }}>
+              <Pressable disabled={loading} onPress={() => { animateCTA(); doAction(); }} style={styles.ctaBtn}>
+                {loading ? (
+                  <ActivityIndicator color={BRAND_DARK} />
+                ) : (
+                  <Text style={styles.ctaBtnText}>{mode === 'login' ? t('sesion.buttons.login') : t('register.buttons.register')}</Text>
+                )}
+              </Pressable>
+            </Animated.View>
+
+            {mode === 'login' && (
+              <Pressable style={styles.altLink} onPress={() => setMode('register')}>
+                <Text style={styles.altLinkText}>{t('sesion.buttons.switchToRegister')}</Text>
+              </Pressable>
+            )}
+            {mode === 'register' && (
+              <Pressable style={styles.altLink} onPress={() => setMode('login')}>
+                <Text style={styles.altLinkText}>{t('register.buttons.switchToLogin')}</Text>
+              </Pressable>
+            )}
+
+            <Text style={styles.helperText}>{t('register.success.message')}</Text>
+          </View>
         </View>
       </KeyboardAvoidingView>
     </LinearGradient>
@@ -212,6 +222,7 @@ const styles = StyleSheet.create({
   gradient: { flex: 1 },
   safe: { flex: 1, justifyContent: 'center' },
   decorLayer: { position: 'absolute', inset: 0 },
+  languageButtonContainer: { position: 'absolute', top: 50, right: 20, zIndex: 10 },
   imgLeft: { position: 'absolute', top: 0, left: 0, width: 140, height: 140, opacity: 0.18 },
   imgRight: { position: 'absolute', bottom: '20%', right: 0, width: 130, height: 130, opacity: 0.18 },
   contentWrapper: { paddingHorizontal: 28, alignItems: 'center' },
