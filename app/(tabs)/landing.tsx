@@ -3,7 +3,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
 // Nueva paleta unificada
@@ -23,18 +23,44 @@ const roles: RoleDef[] = [
   { key: 'dueno_sindicato', label: 'Sindicato', desc: 'Estadísticas y control', iconBg: '#e3f9ec', icon:'📊', tipo:4, target:'/sindicato' },
 ];
 
+// Mapeo helper para reutilizar rutas según tipo de usuario
+function pathForTipo(tipo?: number) {
+  switch (tipo) {
+    case 1: return '/passenger';
+    case 2: return '/chofer';
+    case 3: return '/dueno';
+    case 4: return '/sindicato';
+    default: return null;
+  }
+}
+
 export default function TucanLanding() {
   const [activeTab, setActiveTab] = React.useState<'home' | 'more'>('home');
   const router = useRouter();
   const { userProfile, loading, updateUserType } = useAuth();
+  const redirectedRef = useRef(false);
 
   useEffect(() => {
-    if (!loading) {
-      if (userProfile && (!userProfile.telefono || !userProfile.numero_cuenta)) {
-        router.replace('/info-inicial');
+    if (redirectedRef.current) return; // evitar múltiples replaces
+    if (loading) return;
+    if (!userProfile) return; // usuario no autenticado aún
+
+    // Falta info adicional -> ir a info-inicial
+    if (!userProfile.telefono || !userProfile.numero_cuenta) {
+      redirectedRef.current = true;
+      router.replace('/info-inicial');
+      return;
+    }
+
+    // Ya tiene tipo definido -> saltar landing y enviar directo
+    if (userProfile.tipo) {
+      const target = pathForTipo(userProfile.tipo);
+      if (target) {
+        redirectedRef.current = true;
+        router.replace(target);
       }
     }
-  }, [userProfile, loading]);
+  }, [userProfile, loading, router]);
   return (
     <View style={styles.screen}>      
       <ScrollView contentContainerStyle={{ paddingBottom: 200 }}>      
@@ -48,15 +74,16 @@ export default function TucanLanding() {
         </View>
 
         <View style={styles.rolesContainer}>
-          {roles.map(r => (
+      {roles.map(r => (
             <Pressable
               key={r.key}
               style={({ pressed }) => [styles.roleCard, pressed && styles.roleCardPressed]}
               onPress={async () => {
+                // Si cambia de tipo, actualizar; luego redirigir al nuevo destino
                 if (userProfile?.tipo !== r.tipo) {
                   await updateUserType(r.tipo);
                 }
-                router.replace(r.target);
+        router.replace(r.target as any);
               }}
             >
               <View style={[styles.iconCircle, { backgroundColor: r.iconBg }]}>

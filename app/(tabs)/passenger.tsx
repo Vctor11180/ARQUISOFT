@@ -15,6 +15,21 @@ interface PaymentCard { id:string; alias:string; codigo:string; saldo:number; ac
 interface Wearable { id:string; alias:string; activa:boolean; bateria:number; ultima?:string; viajesMes:number; ultimoAbordaje?:string; rutaUltima?:string }
 
 export default function PassengerPanel() {
+	// ...existing code...
+	const [recargando, setRecargando] = React.useState(false);
+	// Simulación de vinculación y recarga
+	const handleVincularCuenta = async () => {
+		setRecargando(true);
+		setTimeout(() => {
+			if (cards.length > 0) {
+				cards[0].saldo += 50;
+				Alert.alert('Recarga exitosa', 'Se han recargado 50 Bs a tu tarjeta principal.');
+			} else {
+				Alert.alert('Sin tarjetas', 'Agrega una tarjeta para recargar saldo.');
+			}
+			setRecargando(false);
+		}, 1200);
+	};
 	const router = useRouter();
 	const { userProfile } = useAuth();
 	const userName = userProfile?.full_name || 'Pasajero';
@@ -57,11 +72,11 @@ export default function PassengerPanel() {
 					</Pressable>
 				</View>
 
-				<View style={styles.quickRow}>
-					<QuickOption icon="creditcard" label="Tarjetas" />
-					<QuickOption icon="watchface" label="Manillas" />
-					<QuickOption icon="wave.3.right" label="Pago NFC" onPress={()=>router.push('/interfazPago')} active={showNFC} />
-				</View>
+						<View style={styles.quickRow}>
+							<QuickOption icon="creditcard" label="Tarjetas" />
+							<QuickOption icon="watchface" label="Manillas" />
+							<QuickOption icon="wave.3.right" label={recargando ? "Conectando..." : "Vincular"} onPress={handleVincularCuenta} active={recargando} />
+						</View>
 
 				{/* Botón acceso directo a pantalla completa de pago NFC */}
 				<Pressable onPress={()=>router.push('/interfazPago')} style={({pressed})=>[styles.payNfcBtn, pressed && { transform:[{scale:0.97}] }]}>
@@ -71,6 +86,7 @@ export default function PassengerPanel() {
 					<ThemedText style={styles.payNfcText}>Pagar por NFC</ThemedText>
 					<IconSymbol name="chevron.right" size={20} color={'#064420'} />
 				</Pressable>
+				
 
 				{showNFC && (
 					<View style={styles.nfcInline}>

@@ -1,9 +1,10 @@
 import { ThemedText } from '@/components/ThemedText';
+import { useAuth } from '@/contexts/AuthContext';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Animated, Pressable, SafeAreaView, StyleSheet, View } from 'react-native';
 const BRAND_PRIMARY = '#42af56';
 const BRAND_DARK = '#064420';
@@ -18,6 +19,32 @@ export default function TucanScreen() {
   const [active, setActive] = React.useState<'inicio' | 'beneficios' | 'recargar'>('inicio');
   const scale = React.useRef(new Animated.Value(1)).current;
   const router = useRouter();
+  const { userProfile, loading } = useAuth();
+  const redirectedRef = useRef(false);
+
+  useEffect(()=>{
+    if (redirectedRef.current) return;
+    if (loading) return;
+    if (!userProfile) return; // no autenticado aún
+    // Si falta info adicional -> ir a info-inicial
+    if (!userProfile.telefono || !userProfile.numero_cuenta) {
+      redirectedRef.current = true;
+      router.replace('/info-inicial');
+      return;
+    }
+    // Si ya tiene tipo definido -> saltar a su panel
+    if (userProfile.tipo) {
+      const path = userProfile.tipo === 1 ? '/passenger'
+        : userProfile.tipo === 2 ? '/chofer'
+        : userProfile.tipo === 3 ? '/dueno'
+        : userProfile.tipo === 4 ? '/sindicato'
+        : null;
+      if (path) {
+        redirectedRef.current = true;
+        router.replace(path as any);
+      }
+    }
+  },[userProfile, loading, router]);
   const onPressCTA = () => {
     Animated.sequence([
       Animated.timing(scale, { toValue: 0.94, duration: 90, useNativeDriver: true }),

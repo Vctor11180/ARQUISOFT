@@ -216,9 +216,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return { error };
       }
 
-      const updatedProfile = { ...userProfile, tipo };
-      setUserProfile(updatedProfile);
-      await AsyncStorage.setItem(STORAGE_KEYS.USER_PROFILE, JSON.stringify(updatedProfile));
+      // Recargar perfil desde Supabase para reflejar el tipo actualizado
+      await loadUserProfile(userProfile.id);
 
       return { error: null };
     } catch (error) {

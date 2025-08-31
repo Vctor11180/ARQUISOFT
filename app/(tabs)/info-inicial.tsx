@@ -94,7 +94,7 @@ export default function InfoInicialScreen() {
         </View>
 
         <View style={styles.fieldGroup}>
-          <ThemedText style={styles.label}>Número de cuenta</ThemedText>
+          <ThemedText style={styles.label}>Número de CI</ThemedText>
             <TextInput
               placeholder="Ej: 1234567890"
               value={numeroCuenta}

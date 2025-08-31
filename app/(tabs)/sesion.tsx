@@ -36,7 +36,7 @@ export default function SesionScreen() {
   const [secure, setSecure] = useState(true);
   const [loading, setLoading] = useState(false);
   const scaleCTA = useRef(new Animated.Value(1)).current;
-  const { signIn, signUp } = useAuth();
+  const { signIn, signUp, userProfile } = useAuth();
 
   const validateBasics = () => {
     if (!email || !password || (mode === 'register' && !name)) {
@@ -57,13 +57,40 @@ export default function SesionScreen() {
     ]).start();
   };
 
+  function pathForTipo(tipo?: number) {
+    switch (tipo) {
+      case 1: return '/passenger';
+      case 2: return '/chofer';
+      case 3: return '/dueno';
+      case 4: return '/sindicato';
+      default: return '/landing';
+    }
+  }
+
   const doAction = async () => {
     if (!validateBasics()) return;
     setLoading(true);
     try {
       if (mode === 'login') {
         await signIn(email, password);
-        router.replace('landing' as any);
+        // Esperar a que el AuthContext cargue el perfil (pequeño delay)
+        setTimeout(()=>{
+          const perfil = userProfile; // puede ser null inmediatamente tras login la primera vez
+          // Si todavía no está, enviamos al index que ahora autoredirige.
+          if (!perfil) {
+            router.replace('/');
+            return;
+          }
+          if (!perfil.telefono || !perfil.numero_cuenta) {
+            router.replace('/info-inicial');
+            return;
+          }
+            if (perfil.tipo) {
+              router.replace(pathForTipo(perfil.tipo) as any);
+            } else {
+              router.replace('/landing');
+            }
+        }, 350);
       } else {
         await signUp(email, password, name);
         Alert.alert('Registro exitoso', 'Ahora inicia sesión.');
